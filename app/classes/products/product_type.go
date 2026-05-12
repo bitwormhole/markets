@@ -8,6 +8,8 @@ import (
 
 type ID = dxo.ProductID
 
+// type UserProductID = dxo.UserProductID
+
 type Entity = entities.Product
 
 type DTO = dto.Product

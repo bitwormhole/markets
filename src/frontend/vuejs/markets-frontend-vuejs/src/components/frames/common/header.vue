@@ -1,10 +1,13 @@
 <script lang="js">
 
 
+import MySessionInfoBox from '@/components/sessions/session-state-info-box.vue'
 
 export default {
 
-    name: "frames-user-header"
+    name: "frames-user-header",
+
+    components: { MySessionInfoBox },
 
 }
 
@@ -17,5 +20,7 @@ export default {
         <h2>Markets-DB</h2>
 
         <hr />
+
+        <MySessionInfoBox />
     </div>
 </template>

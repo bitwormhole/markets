@@ -2,10 +2,10 @@ package entities
 
 import "github.com/bitwormhole/markets/app/data/dxo"
 
-type Manufacturer struct {
+type BaseManufacturer struct {
 
 	// id
-	ID dxo.ManufacturerID
+	// ID dxo.ManufacturerID
 
 	Base
 
@@ -20,3 +20,17 @@ type Manufacturer struct {
 	LicenceCode dxo.LicenceCode `json:"licence_code"` // 生产许可证代码
 
 }
+
+type Manufacturer struct {
+
+	// id
+	ID dxo.ManufacturerID
+
+	BaseManufacturer
+}
+
+// type UserManufacturer struct {
+// 	// id
+// 	ID dxo.UserManufacturerID
+// 	BaseManufacturer
+// }

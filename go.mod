@@ -9,6 +9,7 @@ require github.com/starter-go/security-gorm v1.0.55
 require (
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/starter-go/keyvalues v0.0.1 // indirect
+	github.com/starter-go/v0/rbac-web-app v0.0.2 // indirect
 )
 
 require (

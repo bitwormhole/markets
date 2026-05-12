@@ -1,6 +1,6 @@
 <script lang="js">
 
-import MyPage from '@/components/products/product-index-page.vue';
+import MyPage from '@/components/products/index.vue';
 
 export default {
 

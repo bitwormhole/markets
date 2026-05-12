@@ -29,7 +29,14 @@ func (inst *CompanyDaoImpl) innerGenUUID() lang.UUID {
 
 // Find implements companies.DAO.
 func (inst *CompanyDaoImpl) Find(db *gorm.DB, id companies.ID) (*companies.Entity, error) {
-	panic("unimplemented")
+
+	db = inst.Agent.DB(db)
+	o1 := inst.innerGetModel()
+
+	res := db.Find(o1, id)
+
+	err := res.Error
+	return o1, err
 }
 
 // Insert implements companies.DAO.
@@ -89,7 +96,26 @@ func (inst *CompanyDaoImpl) Remove(db *gorm.DB, id companies.ID) error {
 
 // Update implements companies.DAO.
 func (inst *CompanyDaoImpl) Update(db *gorm.DB, id companies.ID, callback func(item *companies.Entity) error) (*companies.Entity, error) {
-	panic("unimplemented")
+
+	db = inst.Agent.DB(db)
+
+	o1, err := inst.Find(db, id)
+	if err != nil {
+		return nil, err
+	}
+
+	err = callback(o1)
+	if err != nil {
+		return nil, err
+	}
+
+	res := db.Save(o1)
+	err = res.Error
+	if err != nil {
+		return nil, err
+	}
+
+	return o1, nil
 }
 
 func (inst *CompanyDaoImpl) _impl() companies.DAO {

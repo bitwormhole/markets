@@ -1,6 +1,6 @@
 <script lang="js">
 
-import MyPage from '@/components/licences/licence-index-page.vue';
+import MyPage from '@/components/licences/index.vue';
 
 export default {
 

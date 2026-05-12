@@ -1,17 +1,19 @@
 <script lang="js">
 
+
+import MyPage from '@/components/companies/company-edit-page.vue';
+
+
 export default {
 
     name: "example-edit-view",
 
-    components: {},
+    components: { MyPage },
 
     methods: {
-        init() { },
     },
 
     mounted() {
-        this.init()
     },
 
     props: {}
@@ -23,11 +25,6 @@ export default {
 
 <template>
     <frame-for-admin>
-        <div>
-
-            <h1> Example : edit </h1>
-
-
-        </div>
+        <MyPage />
     </frame-for-admin>
 </template>

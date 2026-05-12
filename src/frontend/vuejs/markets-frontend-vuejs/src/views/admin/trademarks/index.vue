@@ -1,6 +1,6 @@
 <script lang="js">
 
-import MyPage from '@/components/trademarks/trademark-index-page.vue';
+import MyPage from '@/components/trademarks/index.vue';
 
 export default {
 

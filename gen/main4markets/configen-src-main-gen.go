@@ -20,10 +20,12 @@ import (
     pdfe7f411a "github.com/bitwormhole/markets/app/implements/isku"
     p8b634539d "github.com/bitwormhole/markets/app/implements/istandard"
     pecc835d0d "github.com/bitwormhole/markets/app/implements/itrademark"
-    p48d083251 "github.com/bitwormhole/markets/app/web/controllers"
+    p97fb53073 "github.com/bitwormhole/markets/app/web/controllers/rest-api/admin"
+    pe12b812ce "github.com/bitwormhole/markets/app/web/controllers/rest-api/user"
     pd1a916a20 "github.com/starter-go/libgin"
     p512a30914 "github.com/starter-go/libgorm"
     p9621e8b71 "github.com/starter-go/security/random"
+    p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
      "github.com/starter-go/application"
 )
 
@@ -991,19 +993,19 @@ func (inst*pecc835d0da_itrademark_TrademarkServiceImpl) getDao(ie application.In
 
 
 
-// type p48d083251.CompanyController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.CompanyController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-CompanyController
+// id:com-97fb530732ed9e08-admin-CompanyController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_CompanyController struct {
+type p97fb530732_admin_CompanyController struct {
 }
 
-func (inst* p48d083251a_controllers_CompanyController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_CompanyController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-CompanyController"
+	r.ID = "com-97fb530732ed9e08-admin-CompanyController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1012,13 +1014,13 @@ func (inst* p48d083251a_controllers_CompanyController) register(cr application.C
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_CompanyController) new() any {
-    return &p48d083251.CompanyController{}
+func (inst* p97fb530732_admin_CompanyController) new() any {
+    return &p97fb53073.CompanyController{}
 }
 
-func (inst* p48d083251a_controllers_CompanyController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_CompanyController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.CompanyController)
+	com := instance.(*p97fb53073.CompanyController)
 	nop(ie, com)
 
 	
@@ -1030,30 +1032,30 @@ func (inst* p48d083251a_controllers_CompanyController) inject(injext application
 }
 
 
-func (inst*p48d083251a_controllers_CompanyController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_CompanyController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_CompanyController) getService(ie application.InjectionExt)p006e7bf70.Service{
+func (inst*p97fb530732_admin_CompanyController) getService(ie application.InjectionExt)p006e7bf70.Service{
     return ie.GetComponent("#alias-006e7bf7089b23af45a893677ef0db44-Service").(p006e7bf70.Service)
 }
 
 
 
-// type p48d083251.ExampleController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.ExampleController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-ExampleController
+// id:com-97fb530732ed9e08-admin-ExampleController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_ExampleController struct {
+type p97fb530732_admin_ExampleController struct {
 }
 
-func (inst* p48d083251a_controllers_ExampleController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_ExampleController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-ExampleController"
+	r.ID = "com-97fb530732ed9e08-admin-ExampleController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1062,13 +1064,13 @@ func (inst* p48d083251a_controllers_ExampleController) register(cr application.C
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_ExampleController) new() any {
-    return &p48d083251.ExampleController{}
+func (inst* p97fb530732_admin_ExampleController) new() any {
+    return &p97fb53073.ExampleController{}
 }
 
-func (inst* p48d083251a_controllers_ExampleController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_ExampleController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.ExampleController)
+	com := instance.(*p97fb53073.ExampleController)
 	nop(ie, com)
 
 	
@@ -1080,30 +1082,30 @@ func (inst* p48d083251a_controllers_ExampleController) inject(injext application
 }
 
 
-func (inst*p48d083251a_controllers_ExampleController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_ExampleController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_ExampleController) getService(ie application.InjectionExt)p18a88e167.Service{
+func (inst*p97fb530732_admin_ExampleController) getService(ie application.InjectionExt)p18a88e167.Service{
     return ie.GetComponent("#alias-18a88e167ebc1a98a958760b99ada5e3-Service").(p18a88e167.Service)
 }
 
 
 
-// type p48d083251.LicenceController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.LicenceController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-LicenceController
+// id:com-97fb530732ed9e08-admin-LicenceController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_LicenceController struct {
+type p97fb530732_admin_LicenceController struct {
 }
 
-func (inst* p48d083251a_controllers_LicenceController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_LicenceController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-LicenceController"
+	r.ID = "com-97fb530732ed9e08-admin-LicenceController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1112,13 +1114,13 @@ func (inst* p48d083251a_controllers_LicenceController) register(cr application.C
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_LicenceController) new() any {
-    return &p48d083251.LicenceController{}
+func (inst* p97fb530732_admin_LicenceController) new() any {
+    return &p97fb53073.LicenceController{}
 }
 
-func (inst* p48d083251a_controllers_LicenceController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_LicenceController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.LicenceController)
+	com := instance.(*p97fb53073.LicenceController)
 	nop(ie, com)
 
 	
@@ -1130,30 +1132,30 @@ func (inst* p48d083251a_controllers_LicenceController) inject(injext application
 }
 
 
-func (inst*p48d083251a_controllers_LicenceController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_LicenceController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_LicenceController) getService(ie application.InjectionExt)pe29ea031d.Service{
+func (inst*p97fb530732_admin_LicenceController) getService(ie application.InjectionExt)pe29ea031d.Service{
     return ie.GetComponent("#alias-e29ea031d0d62a43df849346ae629515-Service").(pe29ea031d.Service)
 }
 
 
 
-// type p48d083251.ManufacturerController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.ManufacturerController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-ManufacturerController
+// id:com-97fb530732ed9e08-admin-ManufacturerController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_ManufacturerController struct {
+type p97fb530732_admin_ManufacturerController struct {
 }
 
-func (inst* p48d083251a_controllers_ManufacturerController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_ManufacturerController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-ManufacturerController"
+	r.ID = "com-97fb530732ed9e08-admin-ManufacturerController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1162,13 +1164,13 @@ func (inst* p48d083251a_controllers_ManufacturerController) register(cr applicat
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_ManufacturerController) new() any {
-    return &p48d083251.ManufacturerController{}
+func (inst* p97fb530732_admin_ManufacturerController) new() any {
+    return &p97fb53073.ManufacturerController{}
 }
 
-func (inst* p48d083251a_controllers_ManufacturerController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_ManufacturerController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.ManufacturerController)
+	com := instance.(*p97fb53073.ManufacturerController)
 	nop(ie, com)
 
 	
@@ -1180,30 +1182,30 @@ func (inst* p48d083251a_controllers_ManufacturerController) inject(injext applic
 }
 
 
-func (inst*p48d083251a_controllers_ManufacturerController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_ManufacturerController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_ManufacturerController) getService(ie application.InjectionExt)pfa6c9190d.Service{
+func (inst*p97fb530732_admin_ManufacturerController) getService(ie application.InjectionExt)pfa6c9190d.Service{
     return ie.GetComponent("#alias-fa6c9190d2cff4a5ebddc5bb2d680cf3-Service").(pfa6c9190d.Service)
 }
 
 
 
-// type p48d083251.ProductController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.ProductController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-ProductController
+// id:com-97fb530732ed9e08-admin-ProductController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_ProductController struct {
+type p97fb530732_admin_ProductController struct {
 }
 
-func (inst* p48d083251a_controllers_ProductController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_ProductController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-ProductController"
+	r.ID = "com-97fb530732ed9e08-admin-ProductController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1212,13 +1214,13 @@ func (inst* p48d083251a_controllers_ProductController) register(cr application.C
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_ProductController) new() any {
-    return &p48d083251.ProductController{}
+func (inst* p97fb530732_admin_ProductController) new() any {
+    return &p97fb53073.ProductController{}
 }
 
-func (inst* p48d083251a_controllers_ProductController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_ProductController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.ProductController)
+	com := instance.(*p97fb53073.ProductController)
 	nop(ie, com)
 
 	
@@ -1230,30 +1232,30 @@ func (inst* p48d083251a_controllers_ProductController) inject(injext application
 }
 
 
-func (inst*p48d083251a_controllers_ProductController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_ProductController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_ProductController) getService(ie application.InjectionExt)p4cebd7daf.Service{
+func (inst*p97fb530732_admin_ProductController) getService(ie application.InjectionExt)p4cebd7daf.Service{
     return ie.GetComponent("#alias-4cebd7daf2e45520cae84295f03244fb-Service").(p4cebd7daf.Service)
 }
 
 
 
-// type p48d083251.ShopController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.ShopController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-ShopController
+// id:com-97fb530732ed9e08-admin-ShopController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_ShopController struct {
+type p97fb530732_admin_ShopController struct {
 }
 
-func (inst* p48d083251a_controllers_ShopController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_ShopController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-ShopController"
+	r.ID = "com-97fb530732ed9e08-admin-ShopController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1262,13 +1264,13 @@ func (inst* p48d083251a_controllers_ShopController) register(cr application.Comp
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_ShopController) new() any {
-    return &p48d083251.ShopController{}
+func (inst* p97fb530732_admin_ShopController) new() any {
+    return &p97fb53073.ShopController{}
 }
 
-func (inst* p48d083251a_controllers_ShopController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_ShopController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.ShopController)
+	com := instance.(*p97fb53073.ShopController)
 	nop(ie, com)
 
 	
@@ -1280,30 +1282,30 @@ func (inst* p48d083251a_controllers_ShopController) inject(injext application.In
 }
 
 
-func (inst*p48d083251a_controllers_ShopController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_ShopController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_ShopController) getService(ie application.InjectionExt)pb1845fb61.Service{
+func (inst*p97fb530732_admin_ShopController) getService(ie application.InjectionExt)pb1845fb61.Service{
     return ie.GetComponent("#alias-b1845fb6124970f80f51eed232048f58-Service").(pb1845fb61.Service)
 }
 
 
 
-// type p48d083251.SkuController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.SkuController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-SkuController
+// id:com-97fb530732ed9e08-admin-SkuController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_SkuController struct {
+type p97fb530732_admin_SkuController struct {
 }
 
-func (inst* p48d083251a_controllers_SkuController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_SkuController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-SkuController"
+	r.ID = "com-97fb530732ed9e08-admin-SkuController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1312,13 +1314,13 @@ func (inst* p48d083251a_controllers_SkuController) register(cr application.Compo
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_SkuController) new() any {
-    return &p48d083251.SkuController{}
+func (inst* p97fb530732_admin_SkuController) new() any {
+    return &p97fb53073.SkuController{}
 }
 
-func (inst* p48d083251a_controllers_SkuController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_SkuController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.SkuController)
+	com := instance.(*p97fb53073.SkuController)
 	nop(ie, com)
 
 	
@@ -1330,30 +1332,30 @@ func (inst* p48d083251a_controllers_SkuController) inject(injext application.Inj
 }
 
 
-func (inst*p48d083251a_controllers_SkuController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_SkuController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_SkuController) getService(ie application.InjectionExt)p1c4227d85.Service{
+func (inst*p97fb530732_admin_SkuController) getService(ie application.InjectionExt)p1c4227d85.Service{
     return ie.GetComponent("#alias-1c4227d85bd69a939ed704015c6b7410-Service").(p1c4227d85.Service)
 }
 
 
 
-// type p48d083251.StandardController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.StandardController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-StandardController
+// id:com-97fb530732ed9e08-admin-StandardController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_StandardController struct {
+type p97fb530732_admin_StandardController struct {
 }
 
-func (inst* p48d083251a_controllers_StandardController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_StandardController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-StandardController"
+	r.ID = "com-97fb530732ed9e08-admin-StandardController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1362,13 +1364,13 @@ func (inst* p48d083251a_controllers_StandardController) register(cr application.
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_StandardController) new() any {
-    return &p48d083251.StandardController{}
+func (inst* p97fb530732_admin_StandardController) new() any {
+    return &p97fb53073.StandardController{}
 }
 
-func (inst* p48d083251a_controllers_StandardController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_StandardController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.StandardController)
+	com := instance.(*p97fb53073.StandardController)
 	nop(ie, com)
 
 	
@@ -1380,30 +1382,30 @@ func (inst* p48d083251a_controllers_StandardController) inject(injext applicatio
 }
 
 
-func (inst*p48d083251a_controllers_StandardController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_StandardController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_StandardController) getService(ie application.InjectionExt)pb395bddcd.Service{
+func (inst*p97fb530732_admin_StandardController) getService(ie application.InjectionExt)pb395bddcd.Service{
     return ie.GetComponent("#alias-b395bddcd56e3a1ae142524b343de1b5-Service").(pb395bddcd.Service)
 }
 
 
 
-// type p48d083251.TrademarkController in package:github.com/bitwormhole/markets/app/web/controllers
+// type p97fb53073.TrademarkController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
 //
-// id:com-48d083251a7b2708-controllers-TrademarkController
+// id:com-97fb530732ed9e08-admin-TrademarkController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p48d083251a_controllers_TrademarkController struct {
+type p97fb530732_admin_TrademarkController struct {
 }
 
-func (inst* p48d083251a_controllers_TrademarkController) register(cr application.ComponentRegistry) error {
+func (inst* p97fb530732_admin_TrademarkController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-48d083251a7b2708-controllers-TrademarkController"
+	r.ID = "com-97fb530732ed9e08-admin-TrademarkController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1412,13 +1414,13 @@ func (inst* p48d083251a_controllers_TrademarkController) register(cr application
 	return r.Commit()
 }
 
-func (inst* p48d083251a_controllers_TrademarkController) new() any {
-    return &p48d083251.TrademarkController{}
+func (inst* p97fb530732_admin_TrademarkController) new() any {
+    return &p97fb53073.TrademarkController{}
 }
 
-func (inst* p48d083251a_controllers_TrademarkController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p97fb530732_admin_TrademarkController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p48d083251.TrademarkController)
+	com := instance.(*p97fb53073.TrademarkController)
 	nop(ie, com)
 
 	
@@ -1430,13 +1432,563 @@ func (inst* p48d083251a_controllers_TrademarkController) inject(injext applicati
 }
 
 
-func (inst*p48d083251a_controllers_TrademarkController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*p97fb530732_admin_TrademarkController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p48d083251a_controllers_TrademarkController) getService(ie application.InjectionExt)p1142a8d2a.Service{
+func (inst*p97fb530732_admin_TrademarkController) getService(ie application.InjectionExt)p1142a8d2a.Service{
     return ie.GetComponent("#alias-1142a8d2a87e67b3d0431083000e797d-Service").(p1142a8d2a.Service)
+}
+
+
+
+// type p97fb53073.UserController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/admin
+//
+// id:com-97fb530732ed9e08-admin-UserController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p97fb530732_admin_UserController struct {
+}
+
+func (inst* p97fb530732_admin_UserController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-97fb530732ed9e08-admin-UserController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p97fb530732_admin_UserController) new() any {
+    return &p97fb53073.UserController{}
+}
+
+func (inst* p97fb530732_admin_UserController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p97fb53073.UserController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p97fb530732_admin_UserController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p97fb530732_admin_UserController) getService(ie application.InjectionExt)p2d258e798.Service{
+    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+}
+
+
+
+// type pe12b812ce.CompanyController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-CompanyController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_CompanyController struct {
+}
+
+func (inst* pe12b812cec_user_CompanyController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-CompanyController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_CompanyController) new() any {
+    return &pe12b812ce.CompanyController{}
+}
+
+func (inst* pe12b812cec_user_CompanyController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.CompanyController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_CompanyController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_CompanyController) getService(ie application.InjectionExt)p006e7bf70.Service{
+    return ie.GetComponent("#alias-006e7bf7089b23af45a893677ef0db44-Service").(p006e7bf70.Service)
+}
+
+
+
+// type pe12b812ce.ExampleController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-ExampleController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_ExampleController struct {
+}
+
+func (inst* pe12b812cec_user_ExampleController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-ExampleController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_ExampleController) new() any {
+    return &pe12b812ce.ExampleController{}
+}
+
+func (inst* pe12b812cec_user_ExampleController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.ExampleController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_ExampleController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_ExampleController) getService(ie application.InjectionExt)p18a88e167.Service{
+    return ie.GetComponent("#alias-18a88e167ebc1a98a958760b99ada5e3-Service").(p18a88e167.Service)
+}
+
+
+
+// type pe12b812ce.LicenceController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-LicenceController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_LicenceController struct {
+}
+
+func (inst* pe12b812cec_user_LicenceController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-LicenceController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_LicenceController) new() any {
+    return &pe12b812ce.LicenceController{}
+}
+
+func (inst* pe12b812cec_user_LicenceController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.LicenceController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_LicenceController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_LicenceController) getService(ie application.InjectionExt)pe29ea031d.Service{
+    return ie.GetComponent("#alias-e29ea031d0d62a43df849346ae629515-Service").(pe29ea031d.Service)
+}
+
+
+
+// type pe12b812ce.ManufacturerController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-ManufacturerController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_ManufacturerController struct {
+}
+
+func (inst* pe12b812cec_user_ManufacturerController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-ManufacturerController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_ManufacturerController) new() any {
+    return &pe12b812ce.ManufacturerController{}
+}
+
+func (inst* pe12b812cec_user_ManufacturerController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.ManufacturerController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_ManufacturerController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_ManufacturerController) getService(ie application.InjectionExt)pfa6c9190d.Service{
+    return ie.GetComponent("#alias-fa6c9190d2cff4a5ebddc5bb2d680cf3-Service").(pfa6c9190d.Service)
+}
+
+
+
+// type pe12b812ce.ProductController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-ProductController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_ProductController struct {
+}
+
+func (inst* pe12b812cec_user_ProductController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-ProductController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_ProductController) new() any {
+    return &pe12b812ce.ProductController{}
+}
+
+func (inst* pe12b812cec_user_ProductController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.ProductController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_ProductController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_ProductController) getService(ie application.InjectionExt)p4cebd7daf.Service{
+    return ie.GetComponent("#alias-4cebd7daf2e45520cae84295f03244fb-Service").(p4cebd7daf.Service)
+}
+
+
+
+// type pe12b812ce.ShopController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-ShopController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_ShopController struct {
+}
+
+func (inst* pe12b812cec_user_ShopController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-ShopController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_ShopController) new() any {
+    return &pe12b812ce.ShopController{}
+}
+
+func (inst* pe12b812cec_user_ShopController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.ShopController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_ShopController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_ShopController) getService(ie application.InjectionExt)pb1845fb61.Service{
+    return ie.GetComponent("#alias-b1845fb6124970f80f51eed232048f58-Service").(pb1845fb61.Service)
+}
+
+
+
+// type pe12b812ce.SkuController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-SkuController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_SkuController struct {
+}
+
+func (inst* pe12b812cec_user_SkuController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-SkuController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_SkuController) new() any {
+    return &pe12b812ce.SkuController{}
+}
+
+func (inst* pe12b812cec_user_SkuController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.SkuController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_SkuController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_SkuController) getService(ie application.InjectionExt)p1c4227d85.Service{
+    return ie.GetComponent("#alias-1c4227d85bd69a939ed704015c6b7410-Service").(p1c4227d85.Service)
+}
+
+
+
+// type pe12b812ce.StandardController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-StandardController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_StandardController struct {
+}
+
+func (inst* pe12b812cec_user_StandardController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-StandardController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_StandardController) new() any {
+    return &pe12b812ce.StandardController{}
+}
+
+func (inst* pe12b812cec_user_StandardController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.StandardController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_StandardController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_StandardController) getService(ie application.InjectionExt)pb395bddcd.Service{
+    return ie.GetComponent("#alias-b395bddcd56e3a1ae142524b343de1b5-Service").(pb395bddcd.Service)
+}
+
+
+
+// type pe12b812ce.TrademarkController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-TrademarkController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_TrademarkController struct {
+}
+
+func (inst* pe12b812cec_user_TrademarkController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-TrademarkController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_TrademarkController) new() any {
+    return &pe12b812ce.TrademarkController{}
+}
+
+func (inst* pe12b812cec_user_TrademarkController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.TrademarkController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_TrademarkController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_TrademarkController) getService(ie application.InjectionExt)p1142a8d2a.Service{
+    return ie.GetComponent("#alias-1142a8d2a87e67b3d0431083000e797d-Service").(p1142a8d2a.Service)
+}
+
+
+
+// type pe12b812ce.UserController in package:github.com/bitwormhole/markets/app/web/controllers/rest-api/user
+//
+// id:com-e12b812cec90eb86-user-UserController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pe12b812cec_user_UserController struct {
+}
+
+func (inst* pe12b812cec_user_UserController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e12b812cec90eb86-user-UserController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe12b812cec_user_UserController) new() any {
+    return &pe12b812ce.UserController{}
+}
+
+func (inst* pe12b812cec_user_UserController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe12b812ce.UserController)
+	nop(ie, com)
+
+	
+    com.Sender = inst.getSender(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe12b812cec_user_UserController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*pe12b812cec_user_UserController) getService(ie application.InjectionExt)p2d258e798.Service{
+    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
 }
 
 

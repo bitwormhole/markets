@@ -1,6 +1,11 @@
 package dto
 
-import "github.com/bitwormhole/markets/app/data/dxo"
+import (
+	"strings"
+
+	"github.com/bitwormhole/markets/app/data/dxo"
+	"github.com/starter-go/base/lang"
+)
 
 type Licence struct {
 
@@ -9,6 +14,41 @@ type Licence struct {
 
 	Base
 
-	Code dxo.LicenceCode `json:"code"`
-	Type dxo.LicenceType `json:"type"`
+	Code      dxo.LicenceCode `json:"code"`
+	Type      dxo.LicenceType `json:"type"`
+	Reference dxo.URL         `json:"reference"`
+	URI       dxo.URI         `json:"uri"`
+
+	NotBefore lang.Time `json:"not_before"`
+	NotAfter  lang.Time `json:"not_after"`
+
+	Remarks string `json:"remarks"`
+
+	// issuer
+
+	IssuerAddress string `json:"issuer_address"`
+	IssuerName    string `json:"issuer_name"`
+
+	// subject
+
+	SubjectAddress string          `json:"subject_address"`
+	SubjectCode    dxo.CompanyCode `json:"subject_code"`
+	SubjectName    dxo.CompanyName `json:"subject_name"`
+}
+
+func (inst *Licence) Complete() *Licence {
+
+	urib := new(strings.Builder)
+	licode := inst.Code
+	litype := inst.Type
+
+	urib.WriteString("uri://licences/")
+	urib.WriteString(string(litype))
+	urib.WriteString("/")
+	urib.WriteString(string(licode))
+
+	uriStr := strings.ToLower(urib.String())
+	inst.URI = dxo.URI(uriStr)
+
+	return inst
 }

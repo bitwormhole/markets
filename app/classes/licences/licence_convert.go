@@ -22,10 +22,23 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
-	dst.ID = src.ID
+	dst.Code = src.Code
+	dst.Type = src.Type
+	dst.Reference = src.Reference
+	dst.URI = src.URI
+	dst.Remarks = src.Remarks
+
+	dst.NotBefore = src.NotBefore.Time()
+	dst.NotAfter = src.NotAfter.Time()
+
+	dst.IssuerAddress = src.IssuerAddress
+	dst.IssuerName = src.IssuerName
+
+	dst.SubjectAddress = src.SubjectAddress
+	dst.SubjectCode = src.SubjectCode
+	dst.SubjectName = src.SubjectName
 
 	return nil
-
 }
 
 func ConvertListE2D(src []*Entity, dst []*DTO) ([]*DTO, error) {

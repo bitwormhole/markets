@@ -18,6 +18,8 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
 
+    { path: '/login', component: () => import('@/views/user/login.vue') },
+
 
     ////////////////////////////////////////////////////////////////////////////
     // /admin/*
@@ -78,6 +80,13 @@ const router = createRouter({
     { path: '/admin/trademarks', component: () => import('@/views/admin/trademarks/index.vue') },
     { path: '/admin/trademarks/add', component: () => import('@/views/admin/trademarks/trademark-add-view.vue') },
 
+    // /admin/users/*
+
+    { path: '/admin/users', component: () => import('@/views/admin/users/index.vue') },
+    { path: '/admin/users/add', component: () => import('@/views/admin/users/user-add-view.vue') },
+    { path: '/admin/users/query', component: () => import('@/views/admin/users/user-query-view.vue') },
+    { path: '/admin/users/:id/edit', component: () => import('@/views/admin/users/user-edit-view.vue') },
+    { path: '/admin/users/:id/detail', component: () => import('@/views/admin/users/user-detail-view.vue') },
 
 
     ////////////////////////////////////////////////////////////////////////////

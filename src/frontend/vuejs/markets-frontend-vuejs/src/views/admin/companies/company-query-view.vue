@@ -1,10 +1,12 @@
 <script lang="js">
 
+import MyPage from '@/components/companies/company-query-page.vue';
+
 export default {
 
     name: "example-query-view",
 
-    components: {},
+    components: { MyPage },
 
     methods: {
         init() { },
@@ -23,10 +25,6 @@ export default {
 
 <template>
     <frame-for-admin>
-        <div>
-
-            <h1> Example : query </h1>
-
-        </div>
+        <MyPage />
     </frame-for-admin>
 </template>

@@ -10,4 +10,6 @@ type ID = dxo.TrademarkID
 
 type Entity = entities.Trademark
 
+// type UE = entities.UserTrademark // the user_trademark_entity
+
 type DTO = dto.Trademark

@@ -3,45 +3,63 @@
 import { useAxiosLib } from '@/stores/axios';
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
+import MyEditForm from './company-edit-form.vue'
+import lib_getter_js from '@/js/getter'
 
 const theAxiosLib = useAxiosLib()
-
+const the_getter = lib_getter_js.NewGetter()
 
 export default {
 
   name: "company-edit-page",
 
-  components: {},
+  components: { MyEditForm },
+
+  computed: {
+    object_id() {
+      return this.$route.params.id;
+    },
+  },
 
   data() {
-    const item = {
-      name: '',
-      ptype: '',
-      category: '',
-      code: '',
-    }
+    const item = {}
     return { item }
   },
 
   methods: {
-    init() { },
-
 
     save() {
 
       let item = this.item;
+      let id = this.object_id;
 
       let method = 'PUT'
-      let url = '/api/v1/products'
+      let url = '/api/v1/companies/' + id
       let data = {
-        products: [item]
+        companies: [item]
       }
+
       theAxiosLib.execute({ method, url, data })
+    },
+
+    fetch() {
+
+      let id = this.object_id;
+
+      let method = 'GET'
+      let url = '/api/v1/companies/' + id;
+
+      theAxiosLib.execute({ method, url }).then((res) => {
+        let vo = res.data;
+        let item = the_getter.Get('companies/0').From(vo).Result({})
+        this.item = item;
+      })
+
     },
   },
 
   mounted() {
-    this.init()
+    this.fetch()
   },
 
   props: {}
@@ -54,26 +72,7 @@ export default {
 <template>
   <div>
 
-    <ElForm label-width="100">
-
-      <ElFormItem label="企业名称">
-        <ElInput v-model="item.name"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="企业类别">
-        <ElInput v-model="item.category"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="企业类型">
-        <ElInput v-model="item.ptype"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="企业条码">
-        <ElInput v-model="item.code"></ElInput>
-      </ElFormItem>
-
-    </ElForm>
-
+    <MyEditForm v-model="item" />
 
     <ElButton type="success" @click="save"> Save </ElButton>
 

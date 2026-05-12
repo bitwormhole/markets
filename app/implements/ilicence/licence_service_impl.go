@@ -27,6 +27,8 @@ func (inst *LicenceServiceImpl) Insert(ctx context.Context, o1 *licences.DTO) (*
 	o2 := new(licences.Entity)
 	o4 := new(licences.DTO)
 
+	o1 = o1.Complete()
+
 	err := licences.ConvertD2E(o1, o2)
 	if err != nil {
 		return nil, err

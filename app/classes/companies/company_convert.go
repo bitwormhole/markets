@@ -1,6 +1,7 @@
 package companies
 
 import (
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/security-gorm/rbacdb"
 )
 
@@ -10,7 +11,26 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
-	dst.ID = src.ID
+	app_at := src.ApprovedAt
+	fon_at := src.FoundedAt
+
+	dst.Address = src.Address
+	dst.ApprovedAt = lang.NewTime(app_at)
+	dst.Capital = src.Capital
+	dst.Code = src.Code
+	dst.UniqueCode = src.UniqueCode
+	dst.CompanyType = src.CompanyType
+	dst.FoundedAt = lang.NewTime(fon_at)
+	dst.Name = src.Name
+	dst.OperationCategory = src.OperationCategory
+	dst.OperationRange = src.OperationRange
+	dst.Reference = src.Reference
+	dst.Registry = src.Registry
+	dst.Remarks = src.Remarks
+	dst.Representative = src.Representative
+	dst.State = src.State
+	dst.URI = src.URI
+	dst.Web = src.Web
 
 	return nil
 
@@ -22,7 +42,23 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
-	dst.ID = src.ID
+	dst.Address = src.Address
+	dst.ApprovedAt = src.ApprovedAt.Time()
+	dst.Capital = src.Capital
+	dst.Code = src.Code
+	dst.UniqueCode = src.UniqueCode
+	dst.CompanyType = src.CompanyType
+	dst.FoundedAt = src.FoundedAt.Time()
+	dst.Name = src.Name
+	dst.OperationCategory = src.OperationCategory
+	dst.OperationRange = src.OperationRange
+	dst.Reference = src.Reference
+	dst.Registry = src.Registry
+	dst.Remarks = src.Remarks
+	dst.Representative = src.Representative
+	dst.State = src.State
+	dst.URI = src.URI
+	dst.Web = src.Web
 
 	return nil
 

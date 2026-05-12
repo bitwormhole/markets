@@ -3,6 +3,10 @@
 import { useAxiosLib } from '@/stores/axios';
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
+import MyLoader from './shop-table-page-loader.vue'
+import MyTable from './shop-table-view.vue'
+import MyToolbar from '@/components/widgets/toolbar/index.vue'
+import MyRefreshLoader from '@/components/widgets/table-data-loader/refresh-loader.vue'
 
 const theAxiosLib = useAxiosLib()
 
@@ -11,33 +15,27 @@ export default {
 
   name: "shop-query-page",
 
-  components: {},
+  components: { MyLoader, MyTable, MyToolbar, MyRefreshLoader },
 
   data() {
-    const item = {
-      name: '',
-      ptype: '',
-      category: '',
-      code: '',
-    }
-    return { item }
+    const rev2 = 0;
+    return { rev2 }
   },
 
   methods: {
     init() { },
 
-
-    save() {
-
-      let item = this.item;
-
-      let method = 'GET'
-      let url = '/api/v1/products'
-      let data = {
-        products: [item]
-      }
-      theAxiosLib.execute({ method, url, data })
+    handleClickRefresh() {
+      this.rev2++;
     },
+
+    handleClickAdd() {
+      let path = '/admin/shops/add'
+      let lo = this.$router.resolve(path);
+      let url = lo.fullPath;
+      window.open(url, '_blank')
+    },
+
   },
 
   mounted() {
@@ -54,28 +52,18 @@ export default {
 <template>
   <div>
 
-    <ElForm label-width="100">
+    <MyToolbar>
+      <ElButton @click="handleClickAdd"> Add </ElButton>
+      <ElButton @click="handleClickRefresh"> Refresh </ElButton>
+    </MyToolbar>
 
-      <ElFormItem label="商品名称">
-        <ElInput v-model="item.name"></ElInput>
-      </ElFormItem>
+    <!-- <MyDebug> </MyDebug> -->
 
-      <ElFormItem label="商品类别">
-        <ElInput v-model="item.category"></ElInput>
-      </ElFormItem>
+    <MyTable></MyTable>
 
-      <ElFormItem label="商品类型">
-        <ElInput v-model="item.ptype"></ElInput>
-      </ElFormItem>
+    <MyLoader></MyLoader>
 
-      <ElFormItem label="商品条码">
-        <ElInput v-model="item.code"></ElInput>
-      </ElFormItem>
-
-    </ElForm>
-
-
-    <ElButton type="success" @click="save"> Save </ElButton>
+    <MyRefreshLoader :revision="rev2"> </MyRefreshLoader>
 
   </div>
 </template>

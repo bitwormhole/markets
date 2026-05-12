@@ -23,5 +23,14 @@ export default {
 
         <MyNavTable> </MyNavTable>
 
+
+        <div>
+            <RouterLink to="/admin/products"> Products </RouterLink>
+            <RouterLink to="/admin/shops"> Shops </RouterLink>
+            <RouterLink to="/admin/skus"> SKUs </RouterLink>
+
+        </div>
+
+
     </div>
 </template>

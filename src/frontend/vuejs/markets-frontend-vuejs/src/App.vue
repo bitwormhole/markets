@@ -21,6 +21,9 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink class="router-link" to="/home">User</RouterLink>
         <RouterLink class="router-link" to="/admin">Admin</RouterLink>
 
+
+        <RouterLink class="router-link" to="/login">Login</RouterLink>
+
       </nav>
     </div>
     <div>

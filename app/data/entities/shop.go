@@ -2,10 +2,10 @@ package entities
 
 import "github.com/bitwormhole/markets/app/data/dxo"
 
-type Shop struct {
+type BaseShop struct {
 
 	// id
-	ID dxo.ShopID
+	// ID dxo.ShopID
 
 	Base
 
@@ -15,8 +15,22 @@ type Shop struct {
 
 	Description string
 
-	URL dxo.ShopURL
-
 	OperatorID   dxo.CompanyID
 	OperatorCode dxo.CompanyCode
+
+	Web dxo.URL
 }
+
+type Shop struct {
+
+	// id
+	ID dxo.ShopID
+
+	BaseShop
+}
+
+// type UserShop struct {
+// 	// id
+// 	ID dxo.UserShopID
+// 	BaseShop
+// }

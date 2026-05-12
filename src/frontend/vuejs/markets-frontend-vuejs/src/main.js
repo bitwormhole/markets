@@ -1,23 +1,28 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
 import App from './App.vue'
 import router from './router'
+import lib_pinia_js from '@/js/pinia.js'
 
 import Frame4admin from '@/components/frames/admin/index.vue'
 import Frame4dev from '@/components/frames/developer/index.vue'
 import Frame4user from '@/components/frames/user/index.vue'
 
-
+////////////////////////////////////////////////////////////////////////////////
 
 const app = createApp(App)
 
-app.use(createPinia())
+const pinia = lib_pinia_js.GetPinia()
+
+////////////////////////////////////////////////////////////////////////////////
+
+app.use(pinia)
 app.use(router)
 app.use(ElementPlus)
 

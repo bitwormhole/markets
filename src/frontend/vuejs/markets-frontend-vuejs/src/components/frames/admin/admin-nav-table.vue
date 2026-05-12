@@ -1,34 +1,4 @@
 <script lang="js">
-import { ElButton, ElTable, ElTableColumn } from 'element-plus';
-
-const the_table_data = [
-
-    {
-        "type": "examples",
-        "GET": { label: "x" },
-        "POST": { label: "x" },
-        "PUT": { label: "x" },
-        "DEL": { label: "x" },
-    },
-    {
-        "type": "companies",
-        "GET": { label: "x" },
-        "POST": { label: "x" },
-        "PUT": { label: "x" },
-        "DEL": { label: "x" },
-    },
-    {
-        "type": "shops",
-        "GET": {},
-        "POST": {},
-        "PUT": {},
-        "DEL": {},
-    },
-
-];
-
-
-
 
 export default {
 
@@ -37,29 +7,41 @@ export default {
     components: {},
 
     data() {
-        return { the_table_data }
+        return {}
     },
-
 
 }
 
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.nav-link-item {
+    margin: 3px;
+    padding: 3px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+}
+</style>
 
 <template>
     <div>
+        <div>
 
+            <RouterLink class="nav-link-item" to="/admin/companies"> Companies </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/licences"> Licences </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/manufacturers"> Manufacturers </RouterLink>
 
-        <ElTable :data="the_table_data">
+            <RouterLink class="nav-link-item" to="/admin/products"> Products </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/shops"> Shops </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/skus"> SKUs </RouterLink>
 
-            <ElTableColumn label="Type" prop="type"></ElTableColumn>
-            <ElTableColumn label="Query"></ElTableColumn>
-            <ElTableColumn label="Insert"></ElTableColumn>
-            <ElTableColumn label="Update"></ElTableColumn>
-            <ElTableColumn label="Remove"></ElTableColumn>
+            <RouterLink class="nav-link-item" to="/admin/standards"> Standards </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/trademarks"> Trademarks </RouterLink>
 
-        </ElTable>
+            <RouterLink class="nav-link-item" to="/admin/users"> Users </RouterLink>
 
+        </div>
     </div>
 </template>

@@ -160,6 +160,26 @@ export default {
                     <RouterLink to="/admin/trademarks/query"> query </RouterLink>
                 </td>
             </tr>
+
+            <tr>
+                <td>
+                    <RouterLink to="/admin/users"> admin/users </RouterLink>
+                </td>
+                <td>
+                    <RouterLink to="/admin/users/add"> add </RouterLink>
+                </td>
+                <td>
+                    <RouterLink to="/admin/users/edit"> edit </RouterLink>
+                </td>
+                <td>
+                    <RouterLink to="/admin/users/detail"> detail </RouterLink>
+                </td>
+                <td>
+                    <RouterLink to="/admin/users/query"> query </RouterLink>
+                </td>
+            </tr>
+
+
         </table>
     </div>
 </template>

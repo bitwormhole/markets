@@ -3,3 +3,9 @@ package dxo
 type SkuCode string
 
 type SkuURL URL
+
+////////////////////////////////////////////////////////////////////////////////
+
+func (code SkuCode) String() string {
+	return string(code)
+}

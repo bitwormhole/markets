@@ -15,6 +15,7 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 	dst.URL = src.URL
 	dst.Label = src.Label
 	dst.Description = src.Description
+	dst.URI = src.URI
 
 	return nil
 }
@@ -30,6 +31,7 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 	dst.URL = src.URL
 	dst.Label = src.Label
 	dst.Description = src.Description
+	dst.URI = src.URI
 
 	return nil
 }

@@ -50,8 +50,9 @@ const actions = {
     let url = '/api/v1/sessions'
 
     return theAxiosLib.execute({ method, url }).then((res) => {
-      let vo = res.sessions
-      this.current_session_info.xxxx_vo = vo
+      let vo = res.data
+      let items = vo.sessions
+      this.current_session_info = items[0]
     })
   },
 

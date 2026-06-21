@@ -22,10 +22,6 @@ type SKU struct {
 	ID dxo.SkuID
 
 	BaseSKU
-}
 
-// type UserSKU struct {
-// 	// id
-// 	ID dxo.UserSkuID
-// 	BaseSKU
-// }
+	URI dxo.URI `gorm:"unique"`
+}

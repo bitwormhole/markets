@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/licences"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 type LicenceServiceImpl struct {
@@ -24,12 +25,27 @@ func (inst *LicenceServiceImpl) Find(ctx context.Context, id licences.ID) (*lice
 // Insert implements licences.Service.
 func (inst *LicenceServiceImpl) Insert(ctx context.Context, o1 *licences.DTO) (*licences.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = licences.ComputeUri(o1)
+
 	o2 := new(licences.Entity)
 	o4 := new(licences.DTO)
 
-	o1 = o1.Complete()
-
 	err := licences.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

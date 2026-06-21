@@ -9,6 +9,7 @@ type Trademark struct {
 
 	Base
 
-	Foo string `json:"foo"`
-	Bar int    `json:"bar"`
+	Code dxo.TrademarkCode `json:"code"`
+
+	URI dxo.URI `json:"uri"`
 }

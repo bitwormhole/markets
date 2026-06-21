@@ -1,12 +1,13 @@
 <script lang="js">
 
 import InnerHeaderImpl from './../common/header.vue'
+import InnerNavigation from './navigation.vue'
 
 export default {
 
     name: "frames-user-header",
 
-    components: { InnerHeaderImpl },
+    components: { InnerHeaderImpl, InnerNavigation },
 
 }
 
@@ -19,5 +20,8 @@ export default {
         <h2> (frame:user) </h2>
 
         <InnerHeaderImpl> </InnerHeaderImpl>
+
+        <InnerNavigation> </InnerNavigation>
+
     </div>
 </template>

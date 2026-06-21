@@ -27,7 +27,7 @@ export default {
     },
 
     handleClickAdd() {
-      let path = '/admin/products/add'
+      let path = '/products/add'
       let lo = this.$router.resolve(path);
       let url = lo.fullPath;
       window.open(url, '_blank')

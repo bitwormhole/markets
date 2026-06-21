@@ -1,6 +1,7 @@
 package licences
 
 import (
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/security-gorm/rbacdb"
 )
 
@@ -10,7 +11,21 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
-	dst.ID = src.ID
+	dst.Code = src.Code
+	dst.Type = src.Type
+	dst.Reference = src.Reference
+	dst.URI = src.URI
+	dst.Remarks = src.Remarks
+
+	dst.NotBefore = lang.NewTime(src.NotBefore)
+	dst.NotAfter = lang.NewTime(src.NotAfter)
+
+	dst.IssuerAddress = src.IssuerAddress
+	dst.IssuerName = src.IssuerName
+
+	dst.SubjectAddress = src.SubjectAddress
+	dst.SubjectCode = src.SubjectCode
+	dst.SubjectName = src.SubjectName
 
 	return nil
 

@@ -11,9 +11,9 @@ type BaseStandard struct {
 
 	// fields
 
-	Code dxo.StandardCode
+	Title string
 
-	UniqueCode dxo.StandardCode `gorm:"unique"`
+	Code dxo.StandardCode
 
 	Reference dxo.URL // 作为参考 (数据来源) 的 web 页面
 

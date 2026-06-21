@@ -27,10 +27,6 @@ type Shop struct {
 	ID dxo.ShopID
 
 	BaseShop
-}
 
-// type UserShop struct {
-// 	// id
-// 	ID dxo.UserShopID
-// 	BaseShop
-// }
+	URI dxo.URI `gorm:"unique"`
+}

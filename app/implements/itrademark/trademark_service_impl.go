@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/trademarks"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 type TrademarkServiceImpl struct {
@@ -24,10 +25,27 @@ func (inst *TrademarkServiceImpl) Find(ctx context.Context, id trademarks.ID) (*
 // Insert implements trademarks.Service.
 func (inst *TrademarkServiceImpl) Insert(ctx context.Context, o1 *trademarks.DTO) (*trademarks.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = trademarks.ComputeUri(o1)
+
 	o2 := new(trademarks.Entity)
 	o4 := new(trademarks.DTO)
 
 	err := trademarks.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

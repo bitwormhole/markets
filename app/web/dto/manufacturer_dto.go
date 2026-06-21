@@ -16,4 +16,7 @@ type Manufacturer struct {
 	CompanyCode dxo.CompanyCode `json:"company_code"` // 企业统一信用代码
 	ProductCode dxo.ProductCode `json:"product_code"` // 商品条码
 	LicenceCode dxo.LicenceCode `json:"licence_code"` // 生产许可证代码
+	ShortCode   string          `json:"short_code"`   // 生产商 (简短) 代码
+
+	URI dxo.URI `json:"uri"`
 }

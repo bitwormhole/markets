@@ -30,7 +30,7 @@ export default {
     },
 
     handleClickAdd() {
-      let path = '/admin/licences/add'
+      let path = '/licences/add'
       let lo = this.$router.resolve(path);
       let url = lo.fullPath;
       window.open(url, '_blank')

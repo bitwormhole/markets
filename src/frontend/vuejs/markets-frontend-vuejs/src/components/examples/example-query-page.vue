@@ -30,7 +30,7 @@ export default {
     },
 
     handleClickAdd() {
-      let path = '/admin/examples/add'
+      let path = '/examples/add'
       let lo = this.$router.resolve(path);
       let url = lo.fullPath;
       window.open(url, '_blank')

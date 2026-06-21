@@ -11,3 +11,5 @@ type ID = dxo.StandardID
 type Entity = entities.Standard
 
 type DTO = dto.Standard
+
+type URI = dxo.URI

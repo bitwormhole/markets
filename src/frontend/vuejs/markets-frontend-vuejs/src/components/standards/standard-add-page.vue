@@ -15,10 +15,10 @@ export default {
 
   data() {
     const item = {
-      name: '',
-      ptype: '',
-      category: '',
-      code: '',
+      title: '标准-demo-1',
+      uri: '',
+      ref: 'https://example.com/std/1',
+      code: 'std-demo-1',
     }
     return { item }
   },
@@ -56,20 +56,20 @@ export default {
 
     <ElForm label-width="100">
 
-      <ElFormItem label="标准名称">
-        <ElInput v-model="item.name"></ElInput>
+      <ElFormItem label="标题">
+        <ElInput v-model="item.title"></ElInput>
       </ElFormItem>
 
-      <ElFormItem label="标准类别">
-        <ElInput v-model="item.category"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="标准类型">
-        <ElInput v-model="item.ptype"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="标准条码">
+      <ElFormItem label="标准代码">
         <ElInput v-model="item.code"></ElInput>
+      </ElFormItem>
+
+      <ElFormItem label="URI">
+        <ElInput v-model="item.uri"></ElInput>
+      </ElFormItem>
+
+      <ElFormItem label="参考网址">
+        <ElInput v-model="item.ref"></ElInput>
       </ElFormItem>
 
     </ElForm>

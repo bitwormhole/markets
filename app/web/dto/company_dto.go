@@ -17,8 +17,7 @@ type Company struct {
 
 	// ext
 
-	Code       dxo.CompanyCode `json:"code"`        //  统一社会信用代码 (pure)
-	UniqueCode dxo.CompanyCode `json:"unique_code"` //  统一社会信用代码 (unique)
+	Code dxo.CompanyCode `json:"code"` //  统一社会信用代码 (pure)
 
 	Name dxo.CompanyName `json:"name"` // 企业名称
 

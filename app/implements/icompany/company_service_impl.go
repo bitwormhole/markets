@@ -4,6 +4,8 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/companies"
+	"github.com/bitwormhole/markets/app/classes/utils"
+	"github.com/starter-go/v0/subjects"
 )
 
 type CompanyServiceImpl struct {
@@ -36,10 +38,41 @@ func (inst *CompanyServiceImpl) Find(ctx context.Context, id companies.ID) (*com
 // Insert implements companies.Service.
 func (inst *CompanyServiceImpl) Insert(ctx context.Context, o1 *companies.DTO) (*companies.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = companies.ComputeUri(o1)
+
 	o2 := new(companies.Entity)
 	o4 := new(companies.DTO)
 
-	err := companies.ConvertD2E(o1, o2)
+	sub, err := subjects.GetCurrent(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	subGetter, err := sub.DoGet()
+	if err != nil {
+		return nil, err
+	}
+
+	user := subGetter.GetUserID()
+	o1.Owner = user
+	o1.Creator = user
+
+	err = companies.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

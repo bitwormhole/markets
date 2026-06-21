@@ -17,8 +17,6 @@ type BaseLicence struct {
 
 	Code dxo.LicenceCode
 
-	UniqueCode dxo.LicenceCode `gorm:"unique"`
-
 	Type dxo.LicenceType
 
 	// HolderID   dxo.CompanyID

@@ -1,8 +1,6 @@
 package dto
 
 import (
-	"strings"
-
 	"github.com/bitwormhole/markets/app/data/dxo"
 	"github.com/starter-go/base/lang"
 )
@@ -36,19 +34,7 @@ type Licence struct {
 	SubjectName    dxo.CompanyName `json:"subject_name"`
 }
 
-func (inst *Licence) Complete() *Licence {
-
-	urib := new(strings.Builder)
-	licode := inst.Code
-	litype := inst.Type
-
-	urib.WriteString("uri://licences/")
-	urib.WriteString(string(litype))
-	urib.WriteString("/")
-	urib.WriteString(string(licode))
-
-	uriStr := strings.ToLower(urib.String())
-	inst.URI = dxo.URI(uriStr)
-
-	return inst
-}
+// func (inst *Licence) Complete() *Licence {
+// 	inst.URI =
+// 	return inst
+// }

@@ -12,6 +12,7 @@ type Product struct {
 	Name dxo.ProductName `json:"name"`
 	Code dxo.ProductCode `json:"code"`
 	URL  dxo.ProductURL  `json:"url"`
+	URI  dxo.URI         `json:"uri"`
 
 	Label       string `json:"label"`
 	Description string `json:"description"`

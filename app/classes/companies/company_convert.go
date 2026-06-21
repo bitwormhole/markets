@@ -18,7 +18,6 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 	dst.ApprovedAt = lang.NewTime(app_at)
 	dst.Capital = src.Capital
 	dst.Code = src.Code
-	dst.UniqueCode = src.UniqueCode
 	dst.CompanyType = src.CompanyType
 	dst.FoundedAt = lang.NewTime(fon_at)
 	dst.Name = src.Name
@@ -46,7 +45,6 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 	dst.ApprovedAt = src.ApprovedAt.Time()
 	dst.Capital = src.Capital
 	dst.Code = src.Code
-	dst.UniqueCode = src.UniqueCode
 	dst.CompanyType = src.CompanyType
 	dst.FoundedAt = src.FoundedAt.Time()
 	dst.Name = src.Name

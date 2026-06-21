@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/products"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 type ProductServiceImpl struct {
@@ -23,10 +24,27 @@ func (inst *ProductServiceImpl) Find(ctx context.Context, id products.ID) (*prod
 // Insert implements products.Service.
 func (inst *ProductServiceImpl) Insert(ctx context.Context, o1 *products.DTO) (*products.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = products.ComputeUri(o1)
+
 	o2 := new(products.Entity)
 	o4 := new(products.DTO)
 
 	err := products.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

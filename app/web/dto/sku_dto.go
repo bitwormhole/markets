@@ -9,6 +9,6 @@ type SKU struct {
 
 	Base
 
-	Foo string `json:"foo"`
-	Bar int    `json:"bar"`
+	Code dxo.SkuCode `json:"code"`
+	URI  dxo.URI     `json:"uri"`
 }

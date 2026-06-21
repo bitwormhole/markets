@@ -121,6 +121,50 @@ const router = createRouter({
     { path: '/examples/query', component: () => import('@/views/user/examples/example-query-view.vue') },
 
 
+
+    ////////////////////////////////////////////////////////////////////////////
+    // /my/*
+
+
+    { path: '/my/companies', component: () => import('@/views/my/companies.vue') },
+    { path: '/my/licences', component: () => import('@/views/my/licences.vue') },
+    { path: '/my/manufacturers', component: () => import('@/views/my/manufacturers.vue') },
+    { path: '/my/products', component: () => import('@/views/my/products.vue') },
+    { path: '/my/shops', component: () => import('@/views/my/shops.vue') },
+    { path: '/my/skus', component: () => import('@/views/my/skus.vue') },
+    { path: '/my/standards', component: () => import('@/views/my/standards.vue') },
+    { path: '/my/trademarks', component: () => import('@/views/my/trademarks.vue') },
+
+    { path: '/my/favorites', component: () => import('@/views/my/favorites.vue') },
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // /(share)/* 
+
+    // table
+
+    { path: '/companies', component: () => import('@/views/share/companies/index.vue') },
+    { path: '/licences', component: () => import('@/views/share/licences/index.vue') },
+    { path: '/manufacturers', component: () => import('@/views/share/manufacturers/index.vue') },
+    { path: '/products', component: () => import('@/views/share/products/index.vue') },
+    { path: '/shops', component: () => import('@/views/share/shops/index.vue') },
+    { path: '/skus', component: () => import('@/views/share/skus/index.vue') },
+    { path: '/standards', component: () => import('@/views/share/standards/index.vue') },
+    { path: '/trademarks', component: () => import('@/views/share/trademarks/index.vue') },
+
+
+    // add
+
+    { path: '/companies/add', component: () => import('@/views/share/companies/company-add-view.vue') },
+    { path: '/licences/add', component: () => import('@/views/share/licences/licence-add-view.vue') },
+    { path: '/manufacturers/add', component: () => import('@/views/share/manufacturers/manufacturer-add-view.vue') },
+    { path: '/products/add', component: () => import('@/views/share/products/product-add-view.vue') },
+    { path: '/shops/add', component: () => import('@/views/share/shops/shop-add-view.vue') },
+    { path: '/skus/add', component: () => import('@/views/share/skus/sku-add-view.vue') },
+    { path: '/standards/add', component: () => import('@/views/share/standards/standard-add-view.vue') },
+    { path: '/trademarks/add', component: () => import('@/views/share/trademarks/trademark-add-view.vue') },
+
+
     ////////////////////////////////////////////////////////////////////////////
     // /other/*
 

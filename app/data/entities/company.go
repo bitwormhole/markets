@@ -23,8 +23,6 @@ type BaseCompany struct {
 
 	Code dxo.CompanyCode
 
-	UniqueCode dxo.CompanyCode `gorm:"unique"`
-
 	CompanyType string // 类型
 
 	FoundedAt time.Time // 成立日期

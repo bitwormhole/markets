@@ -19,8 +19,6 @@ type BaseTrademark struct {
 
 	Code dxo.TrademarkCode // 商标注册码
 
-	UniqueCode dxo.TrademarkCode `gorm:"unique"`
-
 	HolderID   dxo.CompanyID
 	HolderCode dxo.CompanyCode
 	HolderName dxo.CompanyName

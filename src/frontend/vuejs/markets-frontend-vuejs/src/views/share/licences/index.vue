@@ -1,0 +1,37 @@
+<script lang="js">
+
+import MyPage from '@/components/licences/index.vue';
+
+export default {
+
+    name: "licences-index-view",
+
+    components: { MyPage },
+
+    methods: {
+        init() { },
+    },
+
+    mounted() {
+        this.init()
+    },
+
+    props: {}
+}
+
+</script>
+
+<style></style>
+
+<template>
+    <frame-for-user>
+        <div>
+
+            <h1> 许可证 : index </h1>
+
+        </div>
+
+        <MyPage></MyPage>
+
+    </frame-for-user>
+</template>

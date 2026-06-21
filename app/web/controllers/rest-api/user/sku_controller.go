@@ -4,11 +4,13 @@ import (
 	"strconv"
 
 	"github.com/bitwormhole/markets/app/classes/skus"
+	"github.com/bitwormhole/markets/app/classes/utils"
 	"github.com/bitwormhole/markets/app/data/dxo"
 	"github.com/bitwormhole/markets/app/web/dto"
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
+	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -223,6 +225,9 @@ func (inst *mySkuRequest) doInsertItem() error {
 	ser := inst.controller.Service
 	ctx := inst.context
 	o1 := inst.body1.Items[0]
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
+	subHolder.Checker().AcceptRole(rbac.RoleAny)
 
 	o2, err := ser.Insert(ctx, o1)
 	if err != nil {

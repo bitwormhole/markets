@@ -17,8 +17,6 @@ type BaseProduct struct {
 
 	Code dxo.ProductCode
 
-	UniqueCode dxo.ProductCode `gorm:"unique"`
-
 	Label       string
 	Description string
 

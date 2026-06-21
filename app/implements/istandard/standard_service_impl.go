@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/standards"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 type StandardServiceImpl struct {
@@ -24,10 +25,27 @@ func (inst *StandardServiceImpl) Find(ctx context.Context, id standards.ID) (*st
 // Insert implements standards.Service.
 func (inst *StandardServiceImpl) Insert(ctx context.Context, o1 *standards.DTO) (*standards.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = standards.ComputeUri(o1)
+
 	o2 := new(standards.Entity)
 	o4 := new(standards.DTO)
 
 	err := standards.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,7 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
-	dst.ID = src.ID
+	dst.URI = src.URI
 
 	return nil
 
@@ -22,7 +22,7 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
-	dst.ID = src.ID
+	dst.URI = src.URI
 
 	return nil
 

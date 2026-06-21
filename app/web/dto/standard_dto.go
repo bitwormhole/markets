@@ -9,6 +9,8 @@ type Standard struct {
 
 	Base
 
-	Foo string `json:"foo"`
-	Bar int    `json:"bar"`
+	Code      dxo.StandardCode `json:"code"`
+	URI       dxo.URI          `json:"uri"`
+	Reference dxo.URL          `json:"ref"`
+	Title     string           `json:"title"`
 }

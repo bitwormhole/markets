@@ -4,11 +4,13 @@ import (
 	"strconv"
 
 	"github.com/bitwormhole/markets/app/classes/products"
+	"github.com/bitwormhole/markets/app/classes/utils"
 	"github.com/bitwormhole/markets/app/data/dxo"
 	"github.com/bitwormhole/markets/app/web/dto"
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
+	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -216,6 +218,9 @@ func (inst *myProductRequest) doInsertItem() error {
 	it1 := inst.body1.Items[0]
 	ser := inst.controller.Service
 	ctx := inst.context
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
+	subHolder.Checker().AcceptRole(rbac.RoleAny)
 
 	it2, err := ser.Insert(ctx, it1)
 	if err != nil {

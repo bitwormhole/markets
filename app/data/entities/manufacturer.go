@@ -19,6 +19,7 @@ type BaseManufacturer struct {
 	ProductCode dxo.ProductCode `json:"product_code"` // 商品条码
 	LicenceCode dxo.LicenceCode `json:"licence_code"` // 生产许可证代码
 
+	URI dxo.URI `json:"uri" gorm:"unique"`
 }
 
 type Manufacturer struct {
@@ -28,9 +29,3 @@ type Manufacturer struct {
 
 	BaseManufacturer
 }
-
-// type UserManufacturer struct {
-// 	// id
-// 	ID dxo.UserManufacturerID
-// 	BaseManufacturer
-// }

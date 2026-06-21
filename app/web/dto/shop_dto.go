@@ -9,6 +9,7 @@ type Shop struct {
 
 	Base
 
-	Foo string `json:"foo"`
-	Bar int    `json:"bar"`
+	Name        string  `json:"name"`
+	DisplayName string  `json:"display_name"`
+	URI         dxo.URI `json:"uri"`
 }

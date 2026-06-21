@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/bitwormhole/markets/app/classes/manufacturers"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 type ManufacturerServiceImpl struct {
@@ -24,10 +25,27 @@ func (inst *ManufacturerServiceImpl) Find(ctx context.Context, id manufacturers.
 // Insert implements manufacturers.Service.
 func (inst *ManufacturerServiceImpl) Insert(ctx context.Context, o1 *manufacturers.DTO) (*manufacturers.DTO, error) {
 
+	// subject
+
+	subHolder := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	uid := subHolder.UID()
+	checker := subHolder.Checker()
+	o1.Owner = uid
+	o1.Creator = uid
+	o1.Updater = uid
+	o1.URI = manufacturers.ComputeUri(o1)
+
 	o2 := new(manufacturers.Entity)
 	o4 := new(manufacturers.DTO)
 
 	err := manufacturers.ConvertD2E(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	// check
+
+	err = checker.Check()
 	if err != nil {
 		return nil, err
 	}

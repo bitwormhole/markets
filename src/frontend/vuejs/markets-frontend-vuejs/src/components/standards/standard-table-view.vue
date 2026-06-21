@@ -1,7 +1,7 @@
 <script lang="js">
 
 // import { useAxiosLib } from '@/stores/axios';
-import { ElButton, ElForm, ElFormItem, ElInput, ElTable, ElTableColumn } from 'element-plus';
+import { ElButton, ElButtonGroup, ElForm, ElFormItem, ElInput, ElTable, ElTableColumn } from 'element-plus';
 
 import { useStandardStore } from '@/stores/standards';
 
@@ -47,8 +47,16 @@ export default {
 
     <ElTable :data="items">
       <ElTableColumn label="ID" prop="id"></ElTableColumn>
-      <ElTableColumn label="Name" prop="name"></ElTableColumn>
-      <ElTableColumn label="Code" prop="code"></ElTableColumn>
+      <ElTableColumn label="标准代号" prop="code"></ElTableColumn>
+      <ElTableColumn label="标题" prop="title"></ElTableColumn>
+      <ElTableColumn label="上传者" prop="owner"></ElTableColumn>
+
+      <ElTableColumn>
+        <template #default>
+          <ElButton link> 详情 </ElButton>
+        </template>
+      </ElTableColumn>
+
     </ElTable>
 
   </div>

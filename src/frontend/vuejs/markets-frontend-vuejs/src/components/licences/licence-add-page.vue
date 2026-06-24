@@ -56,6 +56,26 @@ export default {
 
     <ElForm label-width="100">
 
+      <ElFormItem label="许可证类型">
+        <!-- <ElInput v-model="item.type"></ElInput> -->
+        <MyLicenceTypeSelector v-model="item.type"> </MyLicenceTypeSelector>
+      </ElFormItem>
+
+      <ElFormItem label="许可证代码">
+        <ElInput v-model="item.code"></ElInput>
+      </ElFormItem>
+
+      <ElFormItem label="生效日期">
+        <!-- <ElInput v-model="item.not_before"></ElInput> -->
+        <el-date-picker v-model="item.not_before" type="date" value-format="x" placeholder="请选择" />
+      </ElFormItem>
+
+      <ElFormItem label="失效日期">
+        <el-date-picker v-model="item.not_after" type="date" value-format="x" placeholder="请选择" />
+      </ElFormItem>
+
+      <hr />
+
       <ElFormItem label="持有者-名称">
         <ElInput v-model="item.subject_name"></ElInput>
       </ElFormItem>
@@ -81,23 +101,6 @@ export default {
 
       <hr />
 
-      <ElFormItem label="许可证类型">
-        <!-- <ElInput v-model="item.type"></ElInput> -->
-        <MyLicenceTypeSelector v-model="item.type"> </MyLicenceTypeSelector>
-      </ElFormItem>
-
-      <ElFormItem label="许可证代码">
-        <ElInput v-model="item.code"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="生效日期">
-        <!-- <ElInput v-model="item.not_before"></ElInput> -->
-        <el-date-picker v-model="item.not_before" type="date" value-format="x" placeholder="请选择" />
-      </ElFormItem>
-
-      <ElFormItem label="失效日期">
-        <el-date-picker v-model="item.not_after" type="date" value-format="x" placeholder="请选择" />
-      </ElFormItem>
 
       <ElFormItem label="参考网址">
         <ElInput v-model="item.ref" />

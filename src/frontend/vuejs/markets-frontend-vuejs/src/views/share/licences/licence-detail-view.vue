@@ -1,10 +1,12 @@
 <script lang="js">
 
+import MyPage from '@/components/licences/licence-detail-page.vue'
+
 export default {
 
-    name: "example-detail-view",
+    name: "licence-detail-view",
 
-    components: {},
+    components: { MyPage },
 
     methods: {
         init() { },
@@ -23,10 +25,6 @@ export default {
 
 <template>
     <frame-for-user>
-        <div>
-
-            <h1> Example : detail </h1>
-
-        </div>
+        <MyPage />
     </frame-for-user>
 </template>

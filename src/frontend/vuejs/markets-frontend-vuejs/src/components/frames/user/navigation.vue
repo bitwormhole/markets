@@ -11,6 +11,13 @@ export default {
 
     // components: { MyHeader, MyFooter },
 
+    computed: {
+        current() {
+            let x = this.$route.path;
+            return x; //  "/products";
+        },
+    },
+
 }
 
 </script>
@@ -19,15 +26,15 @@ export default {
 
 <template>
     <div>
-        <ElMenu mode="horizontal" router>
+        <ElMenu mode="horizontal" :default-active="current" router>
 
             <ElMenuItem index="/standards"> 标准 </ElMenuItem>
             <ElMenuItem index="/licences"> 许可 </ElMenuItem>
 
             <ElMenuItem index="/trademarks"> 品牌 </ElMenuItem>
-            <ElMenuItem index="/shops"> 店铺 </ElMenuItem>
-            <ElMenuItem index="/companies"> 厂商 </ElMenuItem>
+            <ElMenuItem index="/companies"> 企业 </ElMenuItem>
             <ElMenuItem index="/manufacturers"> 制造商 </ElMenuItem>
+            <ElMenuItem index="/shops"> 店铺 </ElMenuItem>
 
             <ElMenuItem index="/products"> 产品 </ElMenuItem>
             <ElMenuItem index="/skus"> SKU </ElMenuItem>

@@ -1,7 +1,5 @@
 package dxo
 
-import "github.com/bitwormhole/markets/app/data/normalizers"
-
 // 表示许可证类型
 type LicenceType string
 
@@ -23,17 +21,8 @@ const (
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func (code LicenceCode) Pure() LicenceCode {
-	str1 := code.String()
-	str2 := normalizers.PurifyCode(str1)
-	return LicenceCode(str2)
-}
-
-func (code LicenceCode) ForDomain(dn DomainName) LicenceCode {
-	str1 := code.Pure().String()
-	str2 := dn.String()
-	str3 := str1 + "@" + str2
-	return LicenceCode(str3)
+func (code LicenceCode) Normalize() LicenceCode {
+	return normalizeLicenceCode(code)
 }
 
 func (code LicenceCode) String() string {

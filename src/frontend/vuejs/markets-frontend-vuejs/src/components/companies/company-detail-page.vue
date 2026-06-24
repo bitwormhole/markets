@@ -3,6 +3,8 @@
 import { useAxiosLib } from '@/stores/axios';
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
+import MyForm from './company-info-form.vue'
+
 
 const theAxiosLib = useAxiosLib()
 
@@ -11,7 +13,7 @@ export default {
 
   name: "company-detail-page",
 
-  components: {},
+  components: { MyForm },
 
   data() {
     const item = {
@@ -27,7 +29,7 @@ export default {
     init() { },
 
 
-    save() {
+    fetch() {
 
       let item = this.item;
 
@@ -36,7 +38,7 @@ export default {
       let data = {
         products: [item]
       }
-      theAxiosLib.execute({ method, url, data })
+      // theAxiosLib.execute({ method, url, data })
     },
   },
 

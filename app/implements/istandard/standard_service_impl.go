@@ -19,7 +19,19 @@ type StandardServiceImpl struct {
 
 // Find implements standards.Service.
 func (inst *StandardServiceImpl) Find(ctx context.Context, id standards.ID) (*standards.DTO, error) {
-	panic("unimplemented")
+
+	o1, err := inst.Dao.Find(nil, id)
+	if err != nil {
+		return nil, err
+	}
+
+	o2 := new(standards.DTO)
+	err = standards.ConvertE2D(o1, o2)
+	if err != nil {
+		return nil, err
+	}
+
+	return o2, nil
 }
 
 // Insert implements standards.Service.

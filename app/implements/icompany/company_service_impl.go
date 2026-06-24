@@ -5,7 +5,6 @@ import (
 
 	"github.com/bitwormhole/markets/app/classes/companies"
 	"github.com/bitwormhole/markets/app/classes/utils"
-	"github.com/starter-go/v0/subjects"
 )
 
 type CompanyServiceImpl struct {
@@ -51,21 +50,7 @@ func (inst *CompanyServiceImpl) Insert(ctx context.Context, o1 *companies.DTO) (
 	o2 := new(companies.Entity)
 	o4 := new(companies.DTO)
 
-	sub, err := subjects.GetCurrent(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	subGetter, err := sub.DoGet()
-	if err != nil {
-		return nil, err
-	}
-
-	user := subGetter.GetUserID()
-	o1.Owner = user
-	o1.Creator = user
-
-	err = companies.ConvertD2E(o1, o2)
+	err := companies.ConvertD2E(o1, o2)
 	if err != nil {
 		return nil, err
 	}
@@ -113,6 +98,9 @@ func (inst *CompanyServiceImpl) Remove(ctx context.Context, id companies.ID) err
 // Update implements companies.Service.
 func (inst *CompanyServiceImpl) Update(ctx context.Context, id companies.ID, item *companies.DTO) (*companies.DTO, error) {
 
+	hSub := utils.NewSubjectHolder(ctx).UseChecker().UseGetter()
+	checker := hSub.Checker()
+
 	o1 := new(companies.Entity)
 	err := companies.ConvertD2E(item, o1)
 	if err != nil {
@@ -120,8 +108,16 @@ func (inst *CompanyServiceImpl) Update(ctx context.Context, id companies.ID, ite
 	}
 
 	o3, err := inst.Dao.Update(nil, id, func(o2 *companies.Entity) error {
+
+		checker.CheckObject(companies.PreCheckEntity(o2))
+		err := checker.Check()
+		if err != nil {
+			return err
+		}
+
 		return inst.handleUpdateItem(o1, o2)
 	})
+
 	if err != nil {
 		return nil, err
 	}

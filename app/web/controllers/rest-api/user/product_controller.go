@@ -10,7 +10,6 @@ import (
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
-	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +41,7 @@ func (inst *ProductController) route(rp libgin.RouterProxy) error {
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
+	rp.GET("demo", inst.handleDemo)
 
 	rp.POST("", inst.handlePostOne)
 	rp.PUT(":id", inst.handlePutOne)
@@ -109,6 +109,18 @@ func (inst *ProductController) handleDeleteOne(gc *gin.Context) {
 	req.wantRequestBody = true
 
 	req.execute(req.doRemoveItem)
+}
+
+func (inst *ProductController) handleDemo(gc *gin.Context) {
+
+	req := new(myProductRequest)
+	req.context = gc
+	req.controller = inst
+
+	req.wantRequestID = false
+	req.wantRequestBody = false
+
+	req.execute(req.doGetDemo)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -213,6 +225,14 @@ func (inst *myProductRequest) doGetOne() error {
 	return nil
 }
 
+func (inst *myProductRequest) doGetDemo() error {
+
+	item := &dto.Product{}
+	inst.body2.Items = []*dto.Product{item}
+
+	return nil
+}
+
 func (inst *myProductRequest) doInsertItem() error {
 
 	it1 := inst.body1.Items[0]
@@ -220,7 +240,7 @@ func (inst *myProductRequest) doInsertItem() error {
 	ctx := inst.context
 
 	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
-	subHolder.Checker().AcceptRole(rbac.RoleAny)
+	subHolder.Checker().AcceptAny()
 
 	it2, err := ser.Insert(ctx, it1)
 	if err != nil {

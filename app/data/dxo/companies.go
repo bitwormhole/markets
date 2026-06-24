@@ -1,7 +1,5 @@
 package dxo
 
-import "github.com/bitwormhole/markets/app/data/normalizers"
-
 // 表示企业名称
 type CompanyName string
 
@@ -15,9 +13,10 @@ type CompanyURL URL
 
 func (name CompanyName) Normalize() CompanyName {
 
-	str := name.String()
-	str = normalizers.NormalizeRegularName(str)
-	return CompanyName(str)
+	// todo : 'noimpl'
+
+	return name
+
 }
 
 func (name CompanyName) String() string {
@@ -26,17 +25,8 @@ func (name CompanyName) String() string {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func (code CompanyCode) Pure() CompanyCode {
-	str1 := code.String()
-	str2 := normalizers.PurifyCode(str1)
-	return CompanyCode(str2)
-}
-
-func (code CompanyCode) ForDomain(dn DomainName) CompanyCode {
-	str1 := code.Pure().String()
-	str2 := dn.String()
-	str3 := str1 + "@" + str2
-	return CompanyCode(str3)
+func (code CompanyCode) Normalize() CompanyCode {
+	return normalizeCompanyCode(code)
 }
 
 func (code CompanyCode) String() string {

@@ -1,12 +1,10 @@
 <script lang="js">
 
-import MyPage from '@/components/standards/standard-detail-page.vue'
-
 export default {
 
-    name: "standard-detail-view",
+    name: "example-detail-view",
 
-    components: { MyPage },
+    components: {},
 
     methods: {
         init() { },
@@ -25,6 +23,10 @@ export default {
 
 <template>
     <frame-for-user>
-        <MyPage />
+        <div>
+
+            <h1> Example : detail </h1>
+
+        </div>
     </frame-for-user>
 </template>

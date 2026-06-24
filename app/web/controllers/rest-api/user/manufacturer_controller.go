@@ -10,7 +10,6 @@ import (
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
-	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +41,7 @@ func (inst *ManufacturerController) route(rp libgin.RouterProxy) error {
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
+	rp.GET("demo", inst.handleDemo)
 
 	rp.PUT(":id", inst.handlePutItem)
 	rp.POST("", inst.handlePostItem)
@@ -227,7 +227,7 @@ func (inst *myManufacturerRequest) doInsertItem() error {
 	o1 := inst.body1.Items[0]
 
 	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
-	subHolder.Checker().AcceptRole(rbac.RoleAny)
+	subHolder.Checker().AcceptAny()
 
 	o2, err := ser.Insert(ctx, o1)
 	if err != nil {

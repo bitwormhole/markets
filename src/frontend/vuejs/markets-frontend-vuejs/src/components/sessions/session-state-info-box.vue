@@ -73,6 +73,20 @@ export default {
 
     handleClickSignUp() { },
 
+    handleClickExit() {
+      let p = theSessionStore.exit()
+      p.then(() => {
+        this.fetch()
+      })
+    },
+
+    on_login_fail() { },
+
+    on_login_ok() {
+      this.displayLoginDialog = false
+      this.fetch();
+    },
+
   },
 
   mounted() {
@@ -115,14 +129,14 @@ export default {
 
 
             <ElButton> 设置 </ElButton>
-            <ElButton> 退出 </ElButton>
+            <ElButton @click="handleClickExit"> 退出 </ElButton>
           </div>
         </template>
       </el-popover>
     </div>
 
 
-    <MiniLoginDialog v-model="displayLoginDialog" />
+    <MiniLoginDialog v-model="displayLoginDialog" @ok="on_login_ok" @fail="on_login_fail" />
 
   </div>
 </template>

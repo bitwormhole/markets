@@ -56,20 +56,25 @@ export default {
 
     <ElForm label-width="100">
 
-      <ElFormItem label="标题">
-        <ElInput v-model="item.title"></ElInput>
-      </ElFormItem>
-
       <ElFormItem label="标准代码">
         <ElInput v-model="item.code"></ElInput>
       </ElFormItem>
 
-      <ElFormItem label="URI">
-        <ElInput v-model="item.uri"></ElInput>
+      <ElFormItem label="标题">
+        <ElInput v-model="item.title"></ElInput>
       </ElFormItem>
 
+      <ElFormItem label="描述">
+        <ElInput v-model="item.description" type="textarea"></ElInput>
+      </ElFormItem>
+
+
+      <!-- <ElFormItem label="URI">
+        <ElInput v-model="item.uri"></ElInput>
+      </ElFormItem> -->
+
       <ElFormItem label="参考网址">
-        <ElInput v-model="item.ref"></ElInput>
+        <ElInput v-model="item.ref" type="textarea"></ElInput>
       </ElFormItem>
 
     </ElForm>

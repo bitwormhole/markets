@@ -68,7 +68,7 @@ export default {
   <div>
 
     <ElTable :data="items">
-      <ElTableColumn label="ID" prop="id"></ElTableColumn>
+      <ElTableColumn label="ID" prop="id" :width="80"></ElTableColumn>
       <ElTableColumn label="企业名称" prop="name"></ElTableColumn>
       <ElTableColumn label="统一社会信用代码" prop="code"></ElTableColumn>
 

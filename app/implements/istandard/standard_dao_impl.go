@@ -39,7 +39,17 @@ func (inst *StandardDaoImpl) innerGetModelList() []*standards.Entity {
 
 // Find implements standards.DAO.
 func (inst *StandardDaoImpl) Find(db *gorm.DB, id standards.ID) (*standards.Entity, error) {
-	panic("unimplemented")
+
+	db = inst.Agent.DB(db)
+	item := inst.innerGetModel()
+
+	res := db.First(item, id)
+	err := res.Error
+	if err != nil {
+		return nil, err
+	}
+
+	return item, nil
 }
 
 // Insert implements standards.DAO.

@@ -41,6 +41,7 @@ func (inst *UserController) route(rp libgin.RouterProxy) error {
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
+	rp.GET("demo", inst.handleDemo)
 
 	rp.PUT(":id", inst.handlePutItem)
 	rp.POST("", inst.handlePostItem)

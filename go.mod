@@ -13,7 +13,7 @@ require (
 	github.com/starter-go/v0/htttest v0.0.3 // indirect
 	github.com/starter-go/v0/libjwt v0.0.1 // indirect
 	github.com/starter-go/v0/rbac-web-app v0.0.3 // indirect
-	github.com/starter-go/v0/subjects v0.0.6 // indirect
+	github.com/starter-go/v0/subjects v0.0.7 // indirect
 )
 
 require (

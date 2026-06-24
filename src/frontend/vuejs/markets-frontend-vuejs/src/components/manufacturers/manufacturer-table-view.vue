@@ -28,6 +28,12 @@ export default {
   methods: {
     init() { },
 
+    handleClickItemProps(item) { },
+
+    handleClickItemEdit(item) { },
+
+    handleClickItemDelete(item) { },
+
   },
 
   mounted() {
@@ -45,9 +51,25 @@ export default {
   <div>
 
     <ElTable :data="items">
-      <ElTableColumn label="ID" prop="id"></ElTableColumn>
+      <ElTableColumn label="ID" prop="id" :width="80"></ElTableColumn>
+
+      <ElTableColumn label="Label" prop="id">
+        <template #default="scope">
+          <ElButton link type="primary">{{ scope.row.code }}</ElButton>
+        </template>
+      </ElTableColumn>
+
       <ElTableColumn label="Name" prop="name"></ElTableColumn>
       <ElTableColumn label="Code" prop="code"></ElTableColumn>
+
+      <ElTableColumn label="操作">
+        <template #default="scope">
+          <ElButton link type="primary" @click="handleClickItemProperties(scope.row)"> 属性 </ElButton>
+          <ElButton link type="primary" @click="handleClickItemEdit(scope.row)"> 编辑 </ElButton>
+          <ElButton link type="danger" @click="handleClickItemDelete(scope.row)"> 删除 </ElButton>
+        </template>
+      </ElTableColumn>
+
     </ElTable>
 
   </div>

@@ -46,7 +46,7 @@ export default {
   <div>
 
     <ElTable :data="items">
-      <ElTableColumn label="ID" prop="id"></ElTableColumn>
+      <ElTableColumn label="ID" prop="id" :width="80"></ElTableColumn>
       <ElTableColumn label="Name" prop="name"></ElTableColumn>
       <ElTableColumn label="Code" prop="code"></ElTableColumn>
     </ElTable>

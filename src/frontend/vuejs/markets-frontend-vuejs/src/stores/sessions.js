@@ -75,7 +75,15 @@ const actions = {
   },
 
   logout() {
-    return Promise.reject('no impl')
+    return this.exit()
+  },
+
+  exit() {
+    let method = 'POST'
+    let url = '/api/v1/sessions/exit'
+    let headers = {}
+    let data = {}
+    return theAxiosLib.execute({ method, url, headers, data })
   },
 
   keepAlive() {

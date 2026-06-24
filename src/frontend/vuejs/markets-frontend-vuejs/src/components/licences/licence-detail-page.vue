@@ -3,6 +3,7 @@
 import { useAxiosLib } from '@/stores/axios';
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
+import MyForm from './licence-info-form.vue'
 
 const theAxiosLib = useAxiosLib()
 
@@ -11,7 +12,7 @@ export default {
 
   name: "licence-detail-page",
 
-  components: {},
+  components: { MyForm },
 
   data() {
     const item = {

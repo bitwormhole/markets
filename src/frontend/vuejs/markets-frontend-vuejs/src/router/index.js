@@ -164,6 +164,17 @@ const router = createRouter({
     { path: '/standards/add', component: () => import('@/views/share/standards/standard-add-view.vue') },
     { path: '/trademarks/add', component: () => import('@/views/share/trademarks/trademark-add-view.vue') },
 
+    // detail
+
+    { path: '/companies/:id/detail', component: () => import('@/views/share/companies/company-detail-view.vue') },
+    { path: '/licences/:id/detail', component: () => import('@/views/share/licences/licence-detail-view.vue') },
+    { path: '/manufacturers/:id/detail', component: () => import('@/views/share/manufacturers/manufacturer-detail-view.vue') },
+    { path: '/products/:id/detail', component: () => import('@/views/share/products/product-detail-view.vue') },
+    { path: '/shops/:id/detail', component: () => import('@/views/share/shops/shop-detail-view.vue') },
+    { path: '/skus/:id/detail', component: () => import('@/views/share/skus/sku-detail-view.vue') },
+    { path: '/standards/:id/detail', component: () => import('@/views/share/standards/standard-detail-view.vue') },
+    { path: '/trademarks/:id/detail', component: () => import('@/views/share/trademarks/trademark-detail-view.vue') },
+
 
     ////////////////////////////////////////////////////////////////////////////
     // /other/*

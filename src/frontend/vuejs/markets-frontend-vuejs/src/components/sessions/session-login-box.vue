@@ -29,9 +29,24 @@ export default {
       let password = this.password;
       // let data = { username, password }
 
-      theSessionStore.login_basic({ password, username })
+      let p = theSessionStore.login_basic({ password, username })
+
+      p.then(() => {
+        this.fireOk()
+      }).catch(() => {
+        this.fireFail()
+      })
 
     },
+
+    fireOk() {
+      this.$emit('ok')
+    },
+
+    fireFail() {
+      this.$emit('fail')
+    },
+
   },
 
   mounted() {

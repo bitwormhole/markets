@@ -11,7 +11,6 @@ import (
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
-	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +42,7 @@ func (inst *StandardController) route(rp libgin.RouterProxy) error {
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
+	rp.GET("demo", inst.handleDemo)
 
 	rp.PUT(":id", inst.handlePutItem)
 	rp.POST("", inst.handlePostItem)
@@ -56,7 +56,7 @@ func (inst *StandardController) handleGetOne(gc *gin.Context) {
 	req.context = gc
 	req.controller = inst
 
-	req.wantRequestID = false
+	req.wantRequestID = true
 	req.wantRequestBody = false
 
 	req.execute(req.doGetOne)
@@ -105,8 +105,8 @@ func (inst *StandardController) handleDemo(gc *gin.Context) {
 	req.context = gc
 	req.controller = inst
 
-	req.wantRequestID = true
-	req.wantRequestBody = true
+	req.wantRequestID = false
+	req.wantRequestBody = false
 
 	req.execute(req.doDemo)
 }
@@ -212,9 +212,16 @@ func (inst *myStandardRequest) doGetList() error {
 
 func (inst *myStandardRequest) doGetOne() error {
 
-	it := &dto.Standard{}
+	id := inst.id
+	ctx := inst.context
+	ser := inst.controller.Service
 
-	inst.body2.Items = []*dto.Standard{it}
+	it1, err := ser.Find(ctx, id)
+	if err != nil {
+		return err
+	}
+
+	inst.body2.Items = []*dto.Standard{it1}
 	return nil
 }
 
@@ -237,7 +244,7 @@ func (inst *myStandardRequest) doInsertItem() error {
 	o1 := inst.body1.Items[0]
 
 	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
-	subHolder.Checker().AcceptRole(rbac.RoleAny)
+	subHolder.Checker().AcceptAny()
 
 	o2, err := ser.Insert(ctx, o1)
 	if err != nil {
@@ -250,6 +257,11 @@ func (inst *myStandardRequest) doInsertItem() error {
 }
 
 func (inst *myStandardRequest) doDemo() error {
+
+	type theItemType = dto.Standard
+	item := new(theItemType)
+	inst.body2.Items = []*theItemType{item}
+
 	return nil
 }
 

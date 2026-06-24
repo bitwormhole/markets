@@ -46,13 +46,21 @@ export default {
   <div>
 
     <ElTable :data="items">
-      <ElTableColumn label="ID" prop="id"></ElTableColumn>
-      <ElTableColumn label="标准代号" prop="code"></ElTableColumn>
-      <ElTableColumn label="标题" prop="title"></ElTableColumn>
+      <ElTableColumn label="ID" prop="id" :width="80"></ElTableColumn>
+
+      <ElTableColumn label="标准编号" prop="code">
+        <template #default="scope">
+          <ElButton link type="primary">{{ scope.row.code }}</ElButton>
+        </template>
+      </ElTableColumn>
+
+      <!-- <ElTableColumn label="标准代号" prop="code"></ElTableColumn> -->
+
+      <ElTableColumn label="标准名称" prop="title"></ElTableColumn>
       <ElTableColumn label="上传者" prop="owner"></ElTableColumn>
 
-      <ElTableColumn>
-        <template #default>
+      <ElTableColumn label="操作">
+        <template #default="scope">
           <ElButton link> 详情 </ElButton>
         </template>
       </ElTableColumn>

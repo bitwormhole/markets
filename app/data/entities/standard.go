@@ -13,9 +13,11 @@ type BaseStandard struct {
 
 	Title string
 
+	Description string
+
 	Code dxo.StandardCode
 
-	Reference dxo.URL // 作为参考 (数据来源) 的 web 页面
+	Refs dxo.URLList // 作为参考 (数据来源) 的 web 页面
 
 	URI dxo.URI `gorm:"unique"`
 }

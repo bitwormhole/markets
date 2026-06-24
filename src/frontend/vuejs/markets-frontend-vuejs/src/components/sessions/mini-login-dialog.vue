@@ -24,8 +24,13 @@ export default {
     },
 
     methods: {
+        on_ok() {
+            this.$emit('ok')
+        },
 
-
+        on_fail() {
+            this.$emit('fail')
+        },
     },
 
     mounted() {
@@ -41,7 +46,7 @@ export default {
 <template>
     <ElDialog title="登录">
 
-        <LoginBox />
+        <LoginBox @ok="on_ok" @fail="on_fail" />
 
     </ElDialog>
 </template>

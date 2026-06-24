@@ -1,10 +1,12 @@
 <script lang="js">
 
+import MyPage from '@/components/products/product-detail-page.vue'
+
 export default {
 
     name: "product-detail-view",
 
-    components: {},
+    components: { MyPage },
 
     methods: {
         init() { },
@@ -23,10 +25,6 @@ export default {
 
 <template>
     <frame-for-user>
-        <div>
-
-            <h1> Product : detail </h1>
-
-        </div>
+        <MyPage />
     </frame-for-user>
 </template>

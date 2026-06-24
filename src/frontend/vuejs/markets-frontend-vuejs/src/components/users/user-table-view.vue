@@ -50,7 +50,7 @@ export default {
   <div>
 
     <ElTable :data="items">
-      <ElTableColumn label="ID" prop="id"></ElTableColumn>
+      <ElTableColumn label="ID" prop="id" :width="80"></ElTableColumn>
       <ElTableColumn label="用户名" prop="username"></ElTableColumn>
       <ElTableColumn label="昵称" prop="nickname"></ElTableColumn>
       <ElTableColumn label="手机号码" prop="mobile"></ElTableColumn>

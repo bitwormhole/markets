@@ -3,6 +3,7 @@
 import { useAxiosLib } from '@/stores/axios';
 import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
 
+import MyForm from './trademark-info-form.vue'
 
 const theAxiosLib = useAxiosLib()
 
@@ -11,7 +12,7 @@ export default {
 
   name: "trademark-detail-page",
 
-  components: {},
+  components: { MyForm },
 
   data() {
     const item = {
@@ -53,29 +54,6 @@ export default {
 
 <template>
   <div>
-
-    <ElForm label-width="100">
-
-      <ElFormItem label="商品名称">
-        <ElInput v-model="item.name"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="商品类别">
-        <ElInput v-model="item.category"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="商品类型">
-        <ElInput v-model="item.ptype"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="商品条码">
-        <ElInput v-model="item.code"></ElInput>
-      </ElFormItem>
-
-    </ElForm>
-
-
-    <ElButton type="success" @click="save"> Save </ElButton>
-
+    <MyForm />
   </div>
 </template>

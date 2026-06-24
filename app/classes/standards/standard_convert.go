@@ -12,8 +12,9 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.Code = src.Code
 	dst.Domain = src.Domain
-	dst.Reference = src.Reference
+	dst.Refs = src.Refs
 	dst.Title = src.Title
+	dst.Description = src.Description
 	dst.URI = src.URI
 
 	return nil
@@ -27,8 +28,9 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.Code = src.Code
 	dst.Domain = src.Domain
-	dst.Reference = src.Reference
+	dst.Refs = src.Refs
 	dst.Title = src.Title
+	dst.Description = src.Description
 	dst.URI = src.URI
 
 	return nil

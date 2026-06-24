@@ -6,11 +6,11 @@ import (
 	"github.com/bitwormhole/markets/app/classes/licences"
 	"github.com/bitwormhole/markets/app/classes/utils"
 	"github.com/bitwormhole/markets/app/data/dxo"
+	"github.com/bitwormhole/markets/app/web/controllers"
 	"github.com/bitwormhole/markets/app/web/dto"
 	"github.com/bitwormhole/markets/app/web/vo"
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
-	"github.com/starter-go/rbac"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,6 +42,7 @@ func (inst *LicenceController) route(rp libgin.RouterProxy) error {
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
+	rp.GET("demo", inst.handleDemo)
 
 	rp.PUT(":id", inst.handlePutItem)
 	rp.POST("", inst.handlePostItem)
@@ -69,6 +70,7 @@ func (inst *LicenceController) handleGetList(gc *gin.Context) {
 
 	req.wantRequestID = false
 	req.wantRequestBody = false
+	req.wantRequestPage = true
 
 	req.execute(req.doGetList)
 }
@@ -154,6 +156,13 @@ func (inst *myLicenceRequest) open(ctx *gin.Context) error {
 		inst.q = *q
 	}
 
+	if inst.wantRequestPage {
+		p, err := controllers.TryGetPagination(ctx)
+		if (err == nil) && (p != nil) {
+			inst.q.Pagination = *p
+		}
+	}
+
 	return nil
 }
 
@@ -227,7 +236,7 @@ func (inst *myLicenceRequest) doInsertItem() error {
 	o1 := inst.body1.Items[0]
 
 	subHolder := utils.NewSubjectHolder(ctx).UseChecker()
-	subHolder.Checker().AcceptRole(rbac.RoleAny)
+	subHolder.Checker().AcceptAny()
 
 	o2, err := ser.Insert(ctx, o1)
 	if err != nil {

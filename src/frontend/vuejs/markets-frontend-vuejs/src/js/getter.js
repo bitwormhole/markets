@@ -3,10 +3,29 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+function convert_to_string(value) {
+    if (value == null) {
+        return ''
+    }
+    return '' + value
+}
+
+function convert_to_number(value) {
+    if (value == null) {
+        return 0;
+    }
+    return Number(value)
+}
+
+function convert_to_any(value) {
+    return value // bypass
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 function Getter() {
     this.Reset();
 }
-
 
 Getter.inner_sep_elist = function (elist) {
 
@@ -47,6 +66,8 @@ Getter.prototype = {
         return this;
     },
 
+
+
     Result: function (default_value) {
         let p = this.object;
         let elist = this.q_path;
@@ -60,13 +81,37 @@ Getter.prototype = {
         if (p == null) {
             p = default_value;
         }
-        return p;
+        let fn = this.fn_as_t
+        if (fn == null) {
+            fn = convert_to_any
+        }
+        return fn(p);
     },
 
     Reset: function () {
         this.object = {}
         this.q_path = []
+        this.fn_as_t = convert_to_any
         return this;
+    },
+
+    AsText() {
+        return this.As(convert_to_string)
+    },
+
+    AsNumber() {
+        return this.As(convert_to_number)
+    },
+
+    AsAny() {
+        return this.As(convert_to_any)
+    },
+
+    As(a_type_fn) {
+        if (a_type_fn != null) {
+            this.fn_as_t = a_type_fn
+        }
+        return this
     },
 }
 

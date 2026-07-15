@@ -1,10 +1,10 @@
 <script lang="js">
 
-import MyPage from '@/components/users/admin-user-query-page.vue';
+import MyPage from '@/components/permissions/permission-add-page.vue';
 
 export default {
 
-    name: "user-query-view",
+    name: "example-add-view",
 
     components: { MyPage },
 
@@ -25,7 +25,9 @@ export default {
 
 <template>
     <frame-for-admin>
-        <h1> 用户 (User) </h1>
-        <MyPage></MyPage>
+        <div>
+            <h1> 添加权限 (Permission) </h1>
+            <MyPage />
+        </div>
     </frame-for-admin>
 </template>

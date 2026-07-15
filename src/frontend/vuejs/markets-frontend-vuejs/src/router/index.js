@@ -47,6 +47,13 @@ const router = createRouter({
     { path: '/admin/manufacturers/', component: () => import('@/views/admin/manufacturers/index.vue') },
     { path: '/admin/manufacturers/add', component: () => import('@/views/admin/manufacturers/manufacturer-add-view.vue') },
 
+    // /admin/permissions/*
+
+    { path: '/admin/permissions/', component: () => import('@/views/admin/permissions/index.vue') },
+    { path: '/admin/permissions/add', component: () => import('@/views/admin/permissions/permission-add-view.vue') },
+    { path: '/admin/permissions/query', component: () => import('@/views/admin/permissions/permission-query-view.vue') },
+
+
     // /admin/products/*
 
     { path: '/admin/products/', component: () => import('@/views/admin/products/index.vue') },
@@ -54,6 +61,16 @@ const router = createRouter({
     { path: '/admin/products/edit', component: () => import('@/views/admin/products/product-edit-view.vue') },
     { path: '/admin/products/detail', component: () => import('@/views/admin/products/product-detail-view.vue') },
     { path: '/admin/products/query', component: () => import('@/views/admin/products/product-query-view.vue') },
+
+
+    // /admin/roles/*
+
+    { path: '/admin/roles/', component: () => import('@/views/admin/roles/index.vue') },
+    { path: '/admin/roles/add', component: () => import('@/views/admin/roles/role-add-view.vue') },
+
+    // /admin/sessions/*
+
+    { path: '/admin/sessions/', component: () => import('@/views/admin/sessions/index.vue') },
 
 
     // /admin/shops/*

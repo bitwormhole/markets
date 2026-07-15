@@ -1,7 +1,7 @@
 <script lang="js">
 
 import { useAxiosLib } from '@/stores/axios';
-import { ElButton, ElForm, ElFormItem, ElInput, ElSwitch } from 'element-plus';
+import { ElButton, ElCheckbox, ElForm, ElFormItem, ElInput, ElSwitch } from 'element-plus';
 
 
 const theAxiosLib = useAxiosLib()
@@ -15,11 +15,10 @@ export default {
 
   data() {
     const item = {
-      username: '',
-      email: '',
-      mobile: '',
-      avatar: '',
-      nickname: '',
+      name: '',
+      ptype: '',
+      category: '',
+      code: '',
     }
     return { item }
   },
@@ -31,12 +30,13 @@ export default {
     save() {
 
       let item = this.item;
-
       let method = 'POST'
-      let url = '/api/v1/admin/users'
+      let url = '/api/v1/admin/permissions'
+
       let data = {
-        users: [item]
+        permissions: [item]
       }
+
       theAxiosLib.execute({ method, url, data })
     },
   },
@@ -57,24 +57,16 @@ export default {
 
     <ElForm label-width="100">
 
-      <ElFormItem label="用户名">
-        <ElInput v-model="item.username"></ElInput>
+      <ElFormItem label="Method">
+        <ElInput v-model="item.method"></ElInput>
       </ElFormItem>
 
-      <ElFormItem label="昵称">
-        <ElInput v-model="item.nickname"></ElInput>
+      <ElFormItem label="Path">
+        <ElInput v-model="item.path"></ElInput>
       </ElFormItem>
 
-      <!-- <ElFormItem label="头像">
-        <ElInput v-model="item.avatar"></ElInput>
-      </ElFormItem> -->
-
-      <ElFormItem label="手机号码">
-        <ElInput v-model="item.mobile"></ElInput>
-      </ElFormItem>
-
-      <ElFormItem label="Email 地址">
-        <ElInput v-model="item.email"></ElInput>
+      <ElFormItem label="Roles">
+        <ElInput v-model="item.roles"></ElInput>
       </ElFormItem>
 
       <ElFormItem label="Enabled">
@@ -82,7 +74,6 @@ export default {
       </ElFormItem>
 
     </ElForm>
-
 
     <ElButton type="success" @click="save"> 确定 </ElButton>
 

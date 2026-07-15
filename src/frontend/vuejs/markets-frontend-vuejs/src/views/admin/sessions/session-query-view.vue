@@ -1,12 +1,14 @@
 <script lang="js">
 
-import MyPage from '@/components/users/admin-user-query-page.vue';
+
+import InnerPage from '@/components/sessions/admin-session-query-page.vue'
+
 
 export default {
 
-    name: "user-query-view",
+    name: "example-query-view",
 
-    components: { MyPage },
+    components: { InnerPage },
 
     methods: {
         init() { },
@@ -25,7 +27,7 @@ export default {
 
 <template>
     <frame-for-admin>
-        <h1> 用户 (User) </h1>
-        <MyPage></MyPage>
+        <h1> 查询会话 (Session) </h1>
+        <InnerPage> </InnerPage>
     </frame-for-admin>
 </template>

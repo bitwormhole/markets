@@ -24,10 +24,8 @@ export default {
 <style></style>
 
 <template>
-    <div>
-
-        <h1> 添加用户 </h1>
-
+    <frame-for-admin>
+        <h1> 添加用户 (User) </h1>
         <MyPage />
-    </div>
+    </frame-for-admin>
 </template>

@@ -1,10 +1,10 @@
 <script lang="js">
 
-import MyPage from '@/components/users/admin-user-query-page.vue';
+import MyPage from '@/components/roles/role-add-page.vue';
 
 export default {
 
-    name: "user-query-view",
+    name: "admin-roles-add-view",
 
     components: { MyPage },
 
@@ -25,7 +25,9 @@ export default {
 
 <template>
     <frame-for-admin>
-        <h1> 用户 (User) </h1>
-        <MyPage></MyPage>
+
+        <h1> 添加角色 (Role) </h1>
+        <MyPage />
+
     </frame-for-admin>
 </template>

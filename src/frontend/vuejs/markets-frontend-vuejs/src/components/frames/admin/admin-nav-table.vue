@@ -29,6 +29,8 @@ export default {
     <div>
         <div>
 
+            <h3> Markets: </h3>
+
             <RouterLink class="nav-link-item" to="/admin/companies"> Companies </RouterLink>
             <RouterLink class="nav-link-item" to="/admin/licences"> Licences </RouterLink>
             <RouterLink class="nav-link-item" to="/admin/manufacturers"> Manufacturers </RouterLink>
@@ -40,7 +42,13 @@ export default {
             <RouterLink class="nav-link-item" to="/admin/standards"> Standards </RouterLink>
             <RouterLink class="nav-link-item" to="/admin/trademarks"> Trademarks </RouterLink>
 
+
+            <h3> RBAC: </h3>
+
             <RouterLink class="nav-link-item" to="/admin/users"> Users </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/roles"> Roles </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/permissions"> Permissions </RouterLink>
+            <RouterLink class="nav-link-item" to="/admin/sessions"> Sessions </RouterLink>
 
         </div>
     </div>

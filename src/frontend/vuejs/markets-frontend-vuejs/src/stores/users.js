@@ -42,7 +42,7 @@ const actions = {
   fetch(config) {
 
     let method = 'GET'
-    let url = '/api/v1.admin/users'
+    let url = '/api/v1/admin/users'
     let getter = lib_getter_js.NewGetter();
 
     let params = getter.From(config).Get('params').Result({})

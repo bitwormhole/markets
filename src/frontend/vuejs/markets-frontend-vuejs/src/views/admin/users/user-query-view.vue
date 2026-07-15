@@ -1,7 +1,7 @@
 <script lang="js">
 
 
-import MyPage from '@/components/users/user-query-page.vue';
+import MyPage from '@/components/users/admin-user-query-page.vue';
 
 
 export default {
@@ -27,6 +27,7 @@ export default {
 
 <template>
     <frame-for-admin>
+        <h2> 查询用户 (User) </h2>
         <MyPage></MyPage>
     </frame-for-admin>
 </template>

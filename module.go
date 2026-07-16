@@ -9,8 +9,8 @@ import (
 	"github.com/starter-go/libgin/modules/libgin"
 	"github.com/starter-go/libgorm/modules/libgorm"
 	mpool "github.com/starter-go/media-pool"
-	"github.com/starter-go/module-gorm-mysql/modules/mysql"
-	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
+	"github.com/starter-go/module-gorm-mysql/modules/mysql4libgorm"
+	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver4libgorm"
 	"github.com/starter-go/security/modules/security"
 	"github.com/starter-go/starter"
 	"github.com/starter-go/v0/rbac-web-app/modules/rbacwebapp"
@@ -57,8 +57,8 @@ func Module() application.Module {
 	mb.Depend(rbacwebapp.Module())
 	mb.Depend(mpool.ModuleForServer())
 
-	mb.Depend(mysql.Module())
-	mb.Depend(sqlserver.Module())
+	mb.Depend(mysql4libgorm.Module())
+	mb.Depend(sqlserver4libgorm.Module())
 
 	return mb.Create()
 }

@@ -32,6 +32,11 @@ func (inst*autoRegistrar) addAll() error {
     
     inst.register(&p03b29322a1_ilicence_LicenceDaoImpl{})
     inst.register(&p03b29322a1_ilicence_LicenceServiceImpl{})
+    inst.register(&p0e0d72f717_imedia_MediaIOFilter{})
+    inst.register(&p0e0d72f717_imedia_MediaLinkDao{})
+    inst.register(&p0e0d72f717_imedia_MediaLinkService{})
+    inst.register(&p0e0d72f717_imedia_MediaObjectDao{})
+    inst.register(&p0e0d72f717_imedia_MediaObjectService{})
     inst.register(&p19c8c70a5b_imanufacturer_ManufacturerDaoImpl{})
     inst.register(&p19c8c70a5b_imanufacturer_ManufacturerServiceImpl{})
     inst.register(&p4928c59769_iexamples_ExampleDaoImpl{})

@@ -10,20 +10,13 @@ func ListAll(prefix string) []any {
 	list = append(list, new(Domain))
 	list = append(list, new(Licence))
 	list = append(list, new(Manufacturer))
+	list = append(list, new(MediaLink))
+	list = append(list, new(MediaObject))
 	list = append(list, new(Product))
 	list = append(list, new(Shop))
 	list = append(list, new(SKU))
 	list = append(list, new(Standard))
 	list = append(list, new(Trademark))
-
-	// list = append(list, new(UserCompany))
-	// list = append(list, new(UserLicence))
-	// list = append(list, new(UserManufacturer))
-	// list = append(list, new(UserProduct))
-	// list = append(list, new(UserShop))
-	// list = append(list, new(UserSKU))
-	// list = append(list, new(UserStandard))
-	// list = append(list, new(UserTrademark))
 
 	return list
 }
@@ -68,6 +61,14 @@ func (Manufacturer) TableName() string {
 	return theTableNamePrefix + "manufacturers"
 }
 
+func (MediaLink) TableName() string {
+	return theTableNamePrefix + "media_links"
+}
+
+func (MediaObject) TableName() string {
+	return theTableNamePrefix + "media_objects"
+}
+
 func (Product) TableName() string {
 	return theTableNamePrefix + "products"
 }
@@ -87,40 +88,6 @@ func (Standard) TableName() string {
 func (Trademark) TableName() string {
 	return theTableNamePrefix + "trademarks"
 }
-
-////////////////////////////////////////////////////////////////////////////////
-
-// func (UserCompany) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "companies"
-// }
-
-// func (UserLicence) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "licences"
-// }
-
-// func (UserManufacturer) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "manufacturers"
-// }
-
-// func (UserProduct) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "products"
-// }
-
-// func (UserShop) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "shops"
-// }
-
-// func (UserSKU) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "skus"
-// }
-
-// func (UserStandard) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "standards"
-// }
-
-// func (UserTrademark) TableName() string {
-// 	return theTableNamePrefix + theUserTableNameTag + "trademarks"
-// }
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

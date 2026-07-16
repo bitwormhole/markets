@@ -4,6 +4,8 @@ import (
     p18a88e167 "github.com/bitwormhole/markets/app/classes/examples"
     pe29ea031d "github.com/bitwormhole/markets/app/classes/licences"
     pfa6c9190d "github.com/bitwormhole/markets/app/classes/manufacturers"
+    p08d49a956 "github.com/bitwormhole/markets/app/classes/media/mlinks"
+    pf7f306b24 "github.com/bitwormhole/markets/app/classes/media/mobjects"
     p4cebd7daf "github.com/bitwormhole/markets/app/classes/products"
     pb1845fb61 "github.com/bitwormhole/markets/app/classes/shops"
     p1c4227d85 "github.com/bitwormhole/markets/app/classes/skus"
@@ -15,6 +17,7 @@ import (
     p4928c5976 "github.com/bitwormhole/markets/app/implements/iexamples"
     p03b29322a "github.com/bitwormhole/markets/app/implements/ilicence"
     p19c8c70a5 "github.com/bitwormhole/markets/app/implements/imanufacturer"
+    p0e0d72f71 "github.com/bitwormhole/markets/app/implements/imedia"
     pdab695db7 "github.com/bitwormhole/markets/app/implements/iproduct"
     pd0d159fec "github.com/bitwormhole/markets/app/implements/ishop"
     pdfe7f411a "github.com/bitwormhole/markets/app/implements/isku"
@@ -519,6 +522,208 @@ func (inst* p19c8c70a5b_imanufacturer_ManufacturerServiceImpl) inject(injext app
 
 func (inst*p19c8c70a5b_imanufacturer_ManufacturerServiceImpl) getDao(ie application.InjectionExt)pfa6c9190d.DAO{
     return ie.GetComponent("#alias-fa6c9190d2cff4a5ebddc5bb2d680cf3-DAO").(pfa6c9190d.DAO)
+}
+
+
+
+// type p0e0d72f71.MediaIOFilter in package:github.com/bitwormhole/markets/app/implements/imedia
+//
+// id:com-0e0d72f7177dacff-imedia-MediaIOFilter
+// class:class-46220f67d06e6dbd28c3603d4b14f6ae-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p0e0d72f717_imedia_MediaIOFilter struct {
+}
+
+func (inst* p0e0d72f717_imedia_MediaIOFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0e0d72f7177dacff-imedia-MediaIOFilter"
+	r.Classes = "class-46220f67d06e6dbd28c3603d4b14f6ae-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0e0d72f717_imedia_MediaIOFilter) new() any {
+    return &p0e0d72f71.MediaIOFilter{}
+}
+
+func (inst* p0e0d72f717_imedia_MediaIOFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0e0d72f71.MediaIOFilter)
+	nop(ie, com)
+
+	
+    com.LinkService = inst.getLinkService(ie)
+    com.ObjectService = inst.getObjectService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaIOFilter) getLinkService(ie application.InjectionExt)p08d49a956.Service{
+    return ie.GetComponent("#alias-08d49a956408dde7f3a7972876ac967d-Service").(p08d49a956.Service)
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaIOFilter) getObjectService(ie application.InjectionExt)pf7f306b24.Service{
+    return ie.GetComponent("#alias-f7f306b241a41445e934565fccdbe43b-Service").(pf7f306b24.Service)
+}
+
+
+
+// type p0e0d72f71.MediaLinkDao in package:github.com/bitwormhole/markets/app/implements/imedia
+//
+// id:com-0e0d72f7177dacff-imedia-MediaLinkDao
+// class:
+// alias:alias-08d49a956408dde7f3a7972876ac967d-DAO
+// scope:singleton
+//
+type p0e0d72f717_imedia_MediaLinkDao struct {
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkDao) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0e0d72f7177dacff-imedia-MediaLinkDao"
+	r.Classes = ""
+	r.Aliases = "alias-08d49a956408dde7f3a7972876ac967d-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkDao) new() any {
+    return &p0e0d72f71.MediaLinkDao{}
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkDao) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0e0d72f71.MediaLinkDao)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type p0e0d72f71.MediaLinkService in package:github.com/bitwormhole/markets/app/implements/imedia
+//
+// id:com-0e0d72f7177dacff-imedia-MediaLinkService
+// class:
+// alias:alias-08d49a956408dde7f3a7972876ac967d-Service
+// scope:singleton
+//
+type p0e0d72f717_imedia_MediaLinkService struct {
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkService) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0e0d72f7177dacff-imedia-MediaLinkService"
+	r.Classes = ""
+	r.Aliases = "alias-08d49a956408dde7f3a7972876ac967d-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkService) new() any {
+    return &p0e0d72f71.MediaLinkService{}
+}
+
+func (inst* p0e0d72f717_imedia_MediaLinkService) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0e0d72f71.MediaLinkService)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type p0e0d72f71.MediaObjectDao in package:github.com/bitwormhole/markets/app/implements/imedia
+//
+// id:com-0e0d72f7177dacff-imedia-MediaObjectDao
+// class:
+// alias:alias-f7f306b241a41445e934565fccdbe43b-DAO
+// scope:singleton
+//
+type p0e0d72f717_imedia_MediaObjectDao struct {
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectDao) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0e0d72f7177dacff-imedia-MediaObjectDao"
+	r.Classes = ""
+	r.Aliases = "alias-f7f306b241a41445e934565fccdbe43b-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectDao) new() any {
+    return &p0e0d72f71.MediaObjectDao{}
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectDao) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0e0d72f71.MediaObjectDao)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type p0e0d72f71.MediaObjectService in package:github.com/bitwormhole/markets/app/implements/imedia
+//
+// id:com-0e0d72f7177dacff-imedia-MediaObjectService
+// class:
+// alias:alias-f7f306b241a41445e934565fccdbe43b-Service
+// scope:singleton
+//
+type p0e0d72f717_imedia_MediaObjectService struct {
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectService) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0e0d72f7177dacff-imedia-MediaObjectService"
+	r.Classes = ""
+	r.Aliases = "alias-f7f306b241a41445e934565fccdbe43b-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectService) new() any {
+    return &p0e0d72f71.MediaObjectService{}
+}
+
+func (inst* p0e0d72f717_imedia_MediaObjectService) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0e0d72f71.MediaObjectService)
+	nop(ie, com)
+
+	
+
+
+    return nil
 }
 
 

@@ -1,34 +1,29 @@
 <script lang="js">
-
-
 import InnerView from '@/components/roles/admin-role-query-page.vue'
 
-
 export default {
+  name: 'example-query-view',
 
-    name: "example-query-view",
+  components: { InnerView },
 
-    components: { InnerView },
+  methods: {
+    init() {},
+  },
 
-    methods: {
-        init() { },
-    },
+  mounted() {
+    this.init()
+  },
 
-    mounted() {
-        this.init()
-    },
-
-    props: {}
+  props: {},
 }
-
 </script>
 
 <style></style>
 
 <template>
-    <frame-for-admin>
-        <h1> 查询角色 (Role) </h1>
+  <frame-for-admin>
+    <h1>查询角色 (Role)</h1>
 
-        <InnerView> </InnerView>
-    </frame-for-admin>
+    <InnerView> </InnerView>
+  </frame-for-admin>
 </template>

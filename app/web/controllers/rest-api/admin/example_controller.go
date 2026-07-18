@@ -36,7 +36,7 @@ func (inst *ExampleController) Registration() *libgin.ControllerRegistration {
 
 func (inst *ExampleController) route(rp libgin.RouterProxy) error {
 
-	rp = router4api(rp, "admin-examples")
+	rp = router4api(rp, "admin-examples-nop")
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)

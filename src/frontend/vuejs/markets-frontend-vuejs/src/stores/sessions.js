@@ -22,37 +22,65 @@ function makeHttpBasicAuthHeader(user, pass) {
   return "Basic " + b64
 }
 
+
+function innerGetFirstItem(list, value_default) {
+  if (list != null) {
+    for (let idx in list) {
+      let it = list[idx]
+      if (it == null) {
+        continue
+      }
+      return it
+    }
+  }
+  return value_default;
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
 
-
-
 const state = function () {
-  return {
-    current_session_info: {
-      a: 1,
-      b: 2,
-    },
+
+  const m_session = {}
+  const m_token = {}
+  const current_session_info = {
+    a: 1,
+    b: 2,
   }
+
+  return { m_session, m_token, current_session_info }
 }
 
 const getters = {
+
   current(state) {
     return state.current_session_info;
+  },
+
+  current_session(state) {
+    return state.m_session;
+  },
+
+  current_token(state) {
+    return state.m_token;
   },
 }
 
 const actions = {
 
   fetch() {
-
     let method = 'GET'
-    let url = '/api/v1/sessions'
+    let url = '/api/v1/sessions/current'
 
     return theAxiosLib.execute({ method, url }).then((res) => {
       let vo = res.data
-      let items = vo.sessions
-      this.current_session_info = items[0]
+      let tt = innerGetFirstItem(vo.tokens, {})
+      let ss = innerGetFirstItem(vo.sessions, {})
+
+      this.current_session_info = ss
+      this.m_session = ss
+      this.m_token = tt
     })
   },
 
@@ -87,7 +115,11 @@ const actions = {
   },
 
   keepAlive() {
-    return Promise.reject('no impl')
+    let method = 'POST'
+    let url = '/api/v1/sessions/keep-alive'
+    let headers = {}
+    let data = {}
+    return theAxiosLib.execute({ method, url, headers, data })
   },
 
 }

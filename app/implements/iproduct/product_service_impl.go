@@ -18,7 +18,15 @@ type ProductServiceImpl struct {
 
 // Find implements products.Service.
 func (inst *ProductServiceImpl) Find(ctx context.Context, id products.ID) (*products.DTO, error) {
-	panic("unimplemented")
+
+	it1, err := inst.Dao.Find(nil, id)
+	if err != nil {
+		return nil, err
+	}
+
+	it2 := new(products.DTO)
+	err = products.ConvertE2D(it1, it2)
+	return it2, err
 }
 
 // Insert implements products.Service.
@@ -83,7 +91,66 @@ func (inst *ProductServiceImpl) Remove(ctx context.Context, id products.ID) erro
 
 // Update implements products.Service.
 func (inst *ProductServiceImpl) Update(ctx context.Context, id products.ID, item *products.DTO) (*products.DTO, error) {
-	panic("unimplemented")
+
+	sh := utils.NewSubjectHolder(ctx).UseChecker()
+	checker := sh.Checker()
+
+	en1 := new(products.Entity)
+	err := products.ConvertD2E(item, en1)
+	if err != nil {
+		return nil, err
+	}
+
+	en2, err := inst.Dao.Update(nil, id, func(older *products.Entity) error {
+		checker.CheckEntity(older)
+		err := checker.Check()
+		if err != nil {
+			return err
+		}
+		err = inst.innerDoUpdateItemEntity(en1, older)
+		return err
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	dt2 := new(products.DTO)
+	err = products.ConvertE2D(en2, dt2)
+	return dt2, err
+}
+
+func (inst *ProductServiceImpl) innerDoUpdateItemEntity(src, dst *products.Entity) error {
+
+	if src.Code != "" {
+		dst.Code = src.Code
+	}
+
+	if src.Description != "" {
+		dst.Description = src.Description
+	}
+
+	if src.Label != "" {
+		dst.Label = src.Label
+	}
+
+	if src.Name != "" {
+		dst.Name = src.Name
+	}
+
+	if src.Remark != "" {
+		dst.Remark = src.Remark
+	}
+
+	if src.StandardCode != "" {
+		dst.StandardCode = src.StandardCode
+	}
+
+	if src.TrademarkName != "" {
+		dst.TrademarkName = src.TrademarkName
+	}
+
+	return nil
 }
 
 func (inst *ProductServiceImpl) _impl() products.Service {

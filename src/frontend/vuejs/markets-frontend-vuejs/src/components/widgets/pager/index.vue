@@ -3,63 +3,51 @@ import { ElPagination } from 'element-plus'
 import LibLocatorJS from '@/js/locator.js'
 import LibGetterJS from '@/js/getter.js'
 
+const theGetter = LibGetterJS.NewGetter()
+
 export default {
   name: 'widgets-common-pager',
 
+  components: { ElPagination },
+
   computed: {
-    thePagination() {
-      const def = {
-        page: 1,
-        size: 5,
-        total: 0,
-      }
-      let gett = LibGetterJS.NewGetter()
-      return gett.From(this.pagination).Get('').Result(def)
+    offset() {
+      let size = this.limit
+      let current = this.currentPage
+      return size * (current - 1)
     },
 
     limit() {
       const def = 10
-      let gett = LibGetterJS.NewGetter()
-      let p = this.thePagination
-      let str = gett.From(p).Get('size').Result(def)
-      return Number(str)
-    },
-
-    offset() {
-      let gett = LibGetterJS.NewGetter()
-      let p = this.thePagination
-      let size = gett.From(p).Get('size').Result(10)
-      let page = gett.From(p).Get('page').Result(1)
-      page = Number(page)
-      size = Number(size)
-      return size * (page - 1)
-    },
-
-    total() {
-      let gett = LibGetterJS.NewGetter()
-      let p = this.thePagination
-      let total = gett.From(p).Get('total').Result(0)
-      total = Number(total)
-      return total
+      let g = theGetter.Clone().From(this.modelValue)
+      g = g.Get('pagination/size').AsNumber()
+      return g.Result(def)
     },
 
     currentPage() {
-      let gett = LibGetterJS.NewGetter()
-      let p = this.thePagination
-      let page = gett.From(p).Get('page').Result(1)
-      page = Number(page)
-      return page
+      const def = 1
+      let g = theGetter.Clone().From(this.modelValue)
+      g = g.Get('pagination/page').AsNumber()
+      return g.Result(def)
+    },
+
+    total() {
+      const def = 0
+      let g = theGetter.Clone().From(this.modelValue)
+      g = g.Get('pagination/total').AsNumber()
+      return g.Result(def)
     },
   },
 
   data() {
-    let locator = LibLocatorJS.NewLocator(this)
+    const locator = LibLocatorJS.NewLocator(this)
     return { locator }
   },
 
   methods: {
     init() {
-      this.locator = LibLocatorJS.NewLocator(this)
+      let l = this.locator
+      l.Init(this, this.modelValue)
     },
 
     now() {
@@ -67,31 +55,23 @@ export default {
       return d.getTime()
     },
 
-    on_pager_limit(size) {
+    on_pager_size_change(size) {
       let limit = size
       let offset = this.offset
-      this.updatePageAt(limit, offset)
+      this.updatePageAt(offset, limit)
     },
 
-    on_pager_offset(current) {
+    on_pager_current_change(current) {
       let limit = this.limit
       let offset = (current - 1) * limit
-      this.updatePageAt(limit, offset)
+      this.updatePageAt(offset, limit)
     },
 
-    updatePageAt(limit, offset) {
+    updatePageAt(offset, limit) {
       let locator = this.locator
-      // let now = this.now()
-      if (limit == null) {
-        limit = this.limit
-      }
-      if (offset == null) {
-        offset = this.offset
-      }
-      locator.Set('limit', limit)
-      locator.Set('offset', offset)
-      // locator.Set('timestamp', now)
-      locator.Apply()
+      let bank = locator.GetBank('want', true)
+      bank.SetValue('limit', limit)
+      bank.SetValue('offset', offset)
 
       this.fireReload()
     },
@@ -106,7 +86,7 @@ export default {
   },
 
   props: {
-    pagination: Object, // a pagination object { page , size, total }
+    modelValue: Object, // a 'VMO' (View-Model-Object)
   },
 }
 </script>
@@ -117,13 +97,13 @@ export default {
   <div>
     <ElPagination
       :page-size="limit"
-      :page-sizes="[3, 10, 20, 50, 100, 200]"
+      :page-sizes="[5, 10, 20, 50, 100, 200, 500]"
       :total="total"
       :current-page="currentPage"
       background
       layout="total , sizes  ,prev, pager, next"
-      @current-change="on_pager_offset"
-      @size-change="on_pager_limit"
+      @current-change="on_pager_current_change"
+      @size-change="on_pager_size_change"
     ></ElPagination>
   </div>
 </template>

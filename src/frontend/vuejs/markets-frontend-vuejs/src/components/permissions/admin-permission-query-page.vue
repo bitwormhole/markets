@@ -1,70 +1,92 @@
 <script lang="js">
+// admin-permissions-query-page.vue
 
+import { useAxiosLib } from '@/stores/axios.js'
 
-import MyLoader from './admin-permission-table-loader.vue'
-import MyTable from './common-permission-table.vue'
+import MyLoader from '@/components/widgets/table-data-loader/main-table-loader.vue'
 import MyToolbar from '@/components/widgets/toolbar/index.vue'
-import MyRefreshLoader from '@/components/widgets/table-data-loader/refresh-loader.vue'
+import MyPager from '@/components/widgets/pager/index.vue'
+import MyDebugBox from '@/components/widgets/debug-box/index.vue'
 
+import MyTable from './common-permission-table.vue'
+
+const theAxiosLib = useAxiosLib()
 
 export default {
+  name: 'permissions-admin-query-page',
 
-  name: "permission-query-page",
+  components: { MyLoader, MyTable, MyToolbar, MyPager, MyDebugBox },
 
-  components: { MyLoader, MyTable, MyToolbar, MyRefreshLoader },
+  computed: {
+    theDebugText() {
+      let vmo = this.vmo
+      return JSON.stringify(vmo, null, '\t')
+    },
+  },
 
   data() {
-    const items = [];
-    return { items }
+    const vmo = {
+      revision: 0,
+      items: [],
+      pagination: { page: 1, size: 5, total: 0 },
+    }
+    return { vmo }
   },
 
   methods: {
-    init() { },
+    init() {},
+
+    reload() {
+      this.vmo.revision++
+    },
+
+    handleClickDebugBox() {},
 
     handleClickRefresh() {
-      this.rev2++;
+      this.reload()
     },
 
     handleClickAdd() {
       let path = '/admin/permissions/add'
-      let lo = this.$router.resolve(path);
-      let url = lo.fullPath;
+      let lo = this.$router.resolve(path)
+      let url = lo.fullPath
       window.open(url, '_blank')
     },
 
-
-    on_load_items(list) {
-      this.items = list
+    handleClickReload() {
+      let method = 'POST'
+      let url = '/api/v1/admin/permissions/do/reload'
+      let data = {}
+      theAxiosLib.execute({ method, url, data })
     },
-
   },
 
   mounted() {
     this.init()
   },
 
-  props: {}
+  props: {},
 }
-
 </script>
 
 <style></style>
 
 <template>
   <div>
-
     <MyToolbar>
       <ElButton @click="handleClickAdd"> Add </ElButton>
       <ElButton @click="handleClickRefresh"> Refresh </ElButton>
+      <ElButton @click="handleClickReload"> Reload RBAC.permissions.cache </ElButton>
     </MyToolbar>
 
-    <!-- <MyDebug> </MyDebug> -->
+    <MyLoader v-model="vmo" auto path="/api/v1/admin/permissions" items="permissions"></MyLoader>
 
-    <MyTable v-model="items"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+    <MyTable v-model="vmo"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
 
-    <MyLoader v-model="items" @on-items="on_load_items"></MyLoader>
-
-    <MyRefreshLoader :revision="rev2"> </MyRefreshLoader>
-
+    <MyDebugBox title="Debug: VMO">
+      <pre> {{ theDebugText }}  </pre>
+    </MyDebugBox>
   </div>
 </template>

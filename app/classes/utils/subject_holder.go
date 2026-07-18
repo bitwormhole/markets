@@ -21,6 +21,21 @@ func NewSubjectHolder(ctx context.Context) *SubjectHolder {
 	return sh.init(ctx)
 }
 
+func GetCurrentUserID(ctx context.Context) rbac.UserID {
+
+	sub, err := subjects.GetCurrent(ctx)
+	if err != nil {
+		return 0
+	}
+
+	gett, err := sub.DoGet()
+	if err != nil {
+		return 0
+	}
+
+	return gett.GetUserID()
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 type innerSubjectCache struct {

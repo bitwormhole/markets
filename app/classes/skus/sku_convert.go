@@ -1,14 +1,14 @@
 package skus
 
 import (
-	"github.com/starter-go/security-gorm/rbacdb"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	utils.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
 	dst.URI = src.URI
 
@@ -20,7 +20,7 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	utils.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
 	dst.URI = src.URI
 

@@ -1,27 +1,22 @@
 <script lang="js">
-
-import InnerHeaderImpl from './../common/header.vue'
-import InnerNavigation from './navigation.vue'
+import MyHeaderBase from './../common/header.vue'
+import MyNavigation from './navigation.vue'
 
 export default {
+  name: 'frames-user-header',
 
-    name: "frames-user-header",
-
-    components: { InnerHeaderImpl, InnerNavigation },
-
+  components: { MyHeaderBase, MyNavigation },
 }
-
 </script>
 
 <style lang="css"></style>
 
 <template>
-    <div>
-        <h2> (frame:user) </h2>
+  <div>
+    <h2>(frame:user)</h2>
 
-        <InnerHeaderImpl> </InnerHeaderImpl>
+    <MyHeaderBase> </MyHeaderBase>
 
-        <InnerNavigation> </InnerNavigation>
-
-    </div>
+    <MyNavigation> </MyNavigation>
+  </div>
 </template>

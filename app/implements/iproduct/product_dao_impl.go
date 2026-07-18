@@ -27,19 +27,25 @@ func (inst *ProductDaoImpl) innerGenUUID() lang.UUID {
 	return b.Generate()
 }
 
-func (inst *ProductDaoImpl) innerGetModel() *products.Entity {
-
+func (inst *ProductDaoImpl) innerMakeItem() *products.Entity {
 	return new(products.Entity)
 }
 
-func (inst *ProductDaoImpl) innerGetModelList() []*products.Entity {
-
+func (inst *ProductDaoImpl) innerMakeItemList() []*products.Entity {
 	return make([]*products.Entity, 0)
+}
+
+func (inst *ProductDaoImpl) innerPrepareDB(db *gorm.DB) *gorm.DB {
+	return inst.Agent.DB(db)
 }
 
 // Find implements products.DAO.
 func (inst *ProductDaoImpl) Find(db *gorm.DB, id products.ID) (*products.Entity, error) {
-	panic("unimplemented")
+	db = inst.innerPrepareDB(db)
+	item := inst.innerMakeItem()
+	res := db.First(item, id)
+	err := res.Error
+	return item, err
 }
 
 // Insert implements products.DAO.
@@ -63,8 +69,8 @@ func (inst *ProductDaoImpl) Insert(db *gorm.DB, o1 *products.Entity) (*products.
 // Query implements products.DAO.
 func (inst *ProductDaoImpl) Query(db *gorm.DB, q *products.Query) ([]*products.Entity, error) {
 
-	mod := inst.innerGetModel()
-	list := inst.innerGetModelList()
+	item := inst.innerMakeItem()
+	list := inst.innerMakeItemList()
 	f := new(entities.Finder)
 
 	db = inst.Agent.DB(db)
@@ -74,7 +80,7 @@ func (inst *ProductDaoImpl) Query(db *gorm.DB, q *products.Query) ([]*products.E
 	f.SetWant(q.Want)
 	f.SetPage(&q.Pagination)
 	f.SetDest(&list)
-	f.SetModel(mod)
+	f.SetModel(item)
 
 	err := f.Find()
 
@@ -89,7 +95,33 @@ func (inst *ProductDaoImpl) Remove(db *gorm.DB, id products.ID) error {
 
 // Update implements products.DAO.
 func (inst *ProductDaoImpl) Update(db *gorm.DB, id products.ID, callback func(item *products.Entity) error) (*products.Entity, error) {
-	panic("unimplemented")
+
+	db = inst.innerPrepareDB(db)
+	item := inst.innerMakeItem()
+
+	err := db.Transaction(func(tx *gorm.DB) error {
+
+		res := tx.First(item, id)
+		err := res.Error
+		if err != nil {
+			return err
+		}
+
+		err = callback(item)
+		if err != nil {
+			return err
+		}
+
+		res = tx.Save(item)
+		err = res.Error
+		if err != nil {
+			return err
+		}
+
+		return nil
+	})
+
+	return item, err
 }
 
 func (inst *ProductDaoImpl) _impl() products.DAO {

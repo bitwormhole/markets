@@ -1,15 +1,15 @@
 package licences
 
 import (
+	"github.com/bitwormhole/markets/app/classes/utils"
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/security-gorm/rbacdb"
 )
 
 func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	utils.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
 	dst.Code = src.Code
 	dst.Type = src.Type
@@ -35,7 +35,7 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	utils.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
 	dst.Code = src.Code
 	dst.Type = src.Type

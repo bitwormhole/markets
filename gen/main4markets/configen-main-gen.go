@@ -55,6 +55,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p97fb530732_admin_StandardController{})
     inst.register(&p97fb530732_admin_TrademarkController{})
     inst.register(&p97fb530732_admin_UserController{})
+    inst.register(&p9abd0ee225_etc_FastPermissions{})
     inst.register(&pd0d159fec5_ishop_ShopDaoImpl{})
     inst.register(&pd0d159fec5_ishop_ShopServiceImpl{})
     inst.register(&pdab695db7d_iproduct_ProductDaoImpl{})

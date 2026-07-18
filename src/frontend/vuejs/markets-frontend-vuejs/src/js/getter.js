@@ -21,6 +21,20 @@ function convert_to_any(value) {
     return value // bypass
 }
 
+function get_first_item(list, value_default) {
+    if (list != null) {
+        for (let idx in list) {
+            let it = list[idx]
+            if (it == null) {
+                continue
+            }
+            return it
+        }
+    }
+    return value_default;
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
 function Getter() {
@@ -95,6 +109,16 @@ Getter.prototype = {
         return this;
     },
 
+    Clone: function () {
+        let src = this;
+        let dst = new Getter();
+        for (let key in src) {
+            let val = src[key];
+            dst[key] = val
+        }
+        return dst;
+    },
+
     AsText() {
         return this.As(convert_to_string)
     },
@@ -124,6 +148,10 @@ export default {
 
     NewGetter() {
         return new Getter();
-    }
+    },
+
+    GetFirstItem(list, value_default) {
+        return get_first_item(list, value_default)
+    },
 
 }

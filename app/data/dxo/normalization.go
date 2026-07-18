@@ -1,6 +1,10 @@
 package dxo
 
-import "github.com/bitwormhole/markets/app/data/normalizers"
+import (
+	"strings"
+
+	"github.com/bitwormhole/markets/app/data/normalizers"
+)
 
 ////////////////////////////////////////////////////////////////////////////////
 // a set of all holders
@@ -120,6 +124,12 @@ func normalizeTrademarkCode(code TrademarkCode) TrademarkCode {
 	str1 := code.String()
 	str2 := normalizer.Normalize(str1)
 	return TrademarkCode(str2)
+}
+
+func normalizeTrademarkName(name TrademarkName) TrademarkName {
+	str := name.String()
+	str = strings.TrimSpace(str)
+	return TrademarkName(str)
 }
 
 func normalizeProductCode(code ProductCode) ProductCode {

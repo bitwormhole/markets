@@ -3,6 +3,7 @@ package entities
 import (
 	"github.com/bitwormhole/markets/app/data/dxo"
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/mimetypes"
 )
 
 type MediaLink struct {
@@ -14,11 +15,12 @@ type MediaLink struct {
 
 	// fields
 
-	Size int64
+	Name string
 
-	Sum lang.Hex // a sha-256-sum
+	ContentType   mimetypes.Type
+	ContentLength int64
+	ContentSum    lang.Hex // a sha-256-sum
 
-	TargetID dxo.MediaObjectID
-
+	TargetID   dxo.MediaObjectID
 	TargetUUID lang.UUID
 }

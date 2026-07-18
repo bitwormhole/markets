@@ -1,15 +1,23 @@
 package mlinks
 
-import "github.com/starter-go/security-gorm/rbacdb"
+import (
+	"github.com/bitwormhole/markets/app/classes/utils"
+)
 
 func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	utils.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
-	dst.Size = src.Size
-	dst.Sum = src.Sum
+	dst.Name = src.Name
+
+	dst.TargetID = src.TargetID
+	dst.TargetUUID = src.TargetUUID
+
+	dst.ContentLength = src.ContentLength
+	dst.ContentSum = src.ContentSum
+	dst.ContentType = src.ContentType
 
 	return nil
 }
@@ -18,10 +26,16 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	utils.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
-	dst.Size = src.Size
-	dst.Sum = src.Sum
+	dst.Name = src.Name
+
+	dst.TargetID = src.TargetID
+	dst.TargetUUID = src.TargetUUID
+
+	dst.ContentLength = src.ContentLength
+	dst.ContentSum = src.ContentSum
+	dst.ContentType = src.ContentType
 
 	return nil
 }

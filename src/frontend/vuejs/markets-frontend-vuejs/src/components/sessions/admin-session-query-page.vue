@@ -1,68 +1,80 @@
 <script lang="js">
+// sessions-admin-query-page.vue
 
-
-import MyTable from './common-session-table.vue';
-import MyTablePager from './common-session-table-pager.vue';
-import MyTableLoader from './admin-session-table-loader.vue';
+import MyLoader from '@/components/widgets/table-data-loader/main-table-loader.vue'
 import MyToolbar from '@/components/widgets/toolbar/index.vue'
+import MyPager from '@/components/widgets/pager/index.vue'
+import MyDebugBox from '@/components/widgets/debug-box/index.vue'
 
+import MyTable from './common-session-table.vue'
 
 export default {
+  name: 'sessions-admin-query-page',
 
-  name: "sessions-admin-query-page",
+  components: { MyLoader, MyTable, MyToolbar, MyPager, MyDebugBox },
 
-  components: { MyTableLoader, MyTablePager, MyTable },
+  computed: {
+    theDebugText() {
+      let vmo = this.vmo
+      return JSON.stringify(vmo, null, '\t')
+    },
+  },
 
   data() {
-    const items = []
-    return { items }
+    const vmo = {
+      revision: 0,
+      items: [],
+      pagination: { page: 1, size: 5, total: 0 },
+    }
+    return { vmo }
   },
 
   methods: {
-    fetch() {
-      // theSessionStore.fetch()
+    init() {},
+
+    reload() {
+      this.vmo.revision++
     },
 
-    onLoadItems(list) {
-      this.items = list
+    handleClickDebugBox() {},
+
+    handleClickRefresh() {
+      this.reload()
     },
 
     handleClickAdd() {
-      // let path = '/admin/permissions/add'
-      // let lo = this.$router.resolve(path);
-      // let url = lo.fullPath;
+      let path = '/admin/sessions/add'
+      let lo = this.$router.resolve(path)
+      let url = lo.fullPath
       window.open(url, '_blank')
     },
-
-    handleClickRefresh() {
-      this.rev2++;
-    },
-
   },
 
   mounted() {
-    this.fetch()
+    this.init()
   },
 
-  props: {}
+  props: {},
 }
-
 </script>
 
 <style></style>
 
 <template>
   <div>
-    <MyTableLoader v-model="items" @on-items='onLoadItems' />
-
     <MyToolbar>
-      <!-- <ElButton @click="handleClickAdd"> Add </ElButton> -->
+      <ElButton @click="handleClickAdd"> Add </ElButton>
       <ElButton @click="handleClickRefresh"> Refresh </ElButton>
     </MyToolbar>
 
+    <MyLoader v-model="vmo" auto path="/api/v1/admin/sessions" items="sessions"></MyLoader>
 
-    <MyTablePager />
-    <MyTable v-model="items" />
-    <MyTablePager />
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+    <MyTable v-model="vmo"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+
+    <MyDebugBox @click="handleClickDebugBox">
+      <pre> {{ theDebugText }}  </pre>
+    </MyDebugBox>
   </div>
 </template>

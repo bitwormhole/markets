@@ -4,8 +4,10 @@
 
 import { useAxiosLib } from '@/stores/axios'
 import LibLocatorJS from '@/js/locator.js'
+import LibGetterJS from '@/js/getter.js'
 
 const theAxiosLib = useAxiosLib()
+const theGetter = LibGetterJS.NewGetter()
 
 export default {
   name: 'widgets-main-table-loader',
@@ -21,6 +23,24 @@ export default {
       let rev = this.revision
       return limit + ':' + offset + ':' + rev
     },
+
+    theVMO() {
+      return this.modelValue
+    },
+
+    theRevision() {
+      let g = theGetter.Clone().From(this.modelValue)
+      g = g.Get('revision').AsNumber()
+      return g.Result(0)
+    },
+
+    theItemListFieldName() {
+      let name = this.items
+      if (name == null || name == '') {
+        name = 'items'
+      }
+      return name
+    },
   },
 
   data() {
@@ -32,45 +52,80 @@ export default {
   methods: {
     init() {
       let locator = this.locator
-      let limit = locator.Get('limit', 10)
-      let offset = locator.Get('offset', 0)
+      let vmo = this.theVMO
+      locator.Init(this, vmo)
 
-      limit = Number(limit)
-      offset = Number(offset)
+      locator.GetBank('params', true)
+      locator.GetBank('pagination', true)
+      locator.GetBank('want', true)
 
-      locator.Set('limit', limit)
-      locator.Set('offset', offset)
+      let d = locator.GetBank('default', true)
+      let q = locator.GetBank('query', true)
 
-      if (limit < 1) {
-        limit = 1
-      }
+      d.SetValue('limit', 10)
+      d.SetValue('offset', 0)
 
-      let current = Math.floor(offset / limit) + 1
-
-      let p = {
-        page: current,
-        size: limit,
-        total: 0,
-      }
-      this.fireOnPage(p)
+      q.Import(this.$route.query)
     },
 
     fetch() {
-      let locator = this.locator
-      locator.Load()
-
       let method = 'GET'
       let url = this.path
-      let params = locator.GetParams()
+      let params = this.prepareParams()
 
       let p = theAxiosLib.execute({ method, url, params })
+
       p.then((res) => {
         let vo = res.data
-        this.fireOnData(vo)
-        this.fireOnItems(vo.roles)
-        this.fireOnPage(vo.pagination)
+        this.handleResponseVO(vo)
       })
+      this.rewriteParams(params)
       return p
+    },
+
+    filterParams(src, dst) {
+      for (let key in src) {
+        let value = src[key]
+        if (value == null) {
+          continue
+        }
+        if (value == '') {
+          continue
+        }
+        dst[key] = value
+      }
+    },
+
+    prepareParams() {
+      let l = this.locator
+      let bank_name_list = ['default', 'query', 'want']
+      let dst = {}
+
+      for (let idx in bank_name_list) {
+        let name = bank_name_list[idx]
+        let bank = l.GetBank(name, true)
+        let tmp = {}
+        tmp = bank.Export(tmp)
+        this.filterParams(tmp, dst)
+      }
+
+      return dst
+    },
+
+    rewriteParams(params) {
+      this.rewriteParamsToVMO(params)
+      this.rewriteParamsToLocation(params)
+    },
+
+    rewriteParamsToLocation(params) {
+      let query = params
+      this.$router.push({ query })
+    },
+
+    rewriteParamsToVMO(params) {
+      let l = this.locator
+      let bank = l.GetBank('params', true)
+      bank.Import(params)
     },
 
     now() {
@@ -98,6 +153,30 @@ export default {
       this.$emit('on-page', pagination)
     },
 
+    handleResponsePagination(pagination) {
+      let vmo = this.modelValue
+      vmo['pagination'] = pagination
+      this.fireOnPage(pagination)
+    },
+
+    handleResponseItems(items) {
+      let vmo = this.modelValue
+      vmo['items'] = items
+      this.fireOnItems(items)
+    },
+
+    handleResponseVO(vo) {
+      let gett = theGetter.Clone().Reset()
+      let items_field_name = this.theItemListFieldName
+      let items = gett.From(vo).Get(items_field_name).AsAny().Result([])
+      let page = gett.From(vo).Get('pagination').AsAny().Result({})
+
+      this.handleResponsePagination(page)
+      this.handleResponseItems(items)
+
+      this.fireOnData(vo)
+    },
+
     checkSumUpdate() {
       let sum1 = this.sum
       let sum2 = this.theSum
@@ -117,7 +196,7 @@ export default {
   mounted() {
     this.init()
     if (this.auto) {
-      this.checkSumUpdate()
+      this.fetch()
     }
   },
 
@@ -130,15 +209,17 @@ export default {
       // this.checkSumUpdate()
     },
 
-    revision() {
-      this.checkSumUpdate()
+    theRevision() {
+      // this.checkSumUpdate()
+      this.fetch()
     },
   },
 
   props: {
-    revision: Number,
-    path: String,
-    auto: Boolean,
+    modelValue: Object, // a 'VMO' (view-model-object)
+    path: String, // the URL.path of REST-api
+    auto: Boolean, // call fetch on-started , if true
+    items: String, // the vo-field-name of items
   },
 }
 </script>

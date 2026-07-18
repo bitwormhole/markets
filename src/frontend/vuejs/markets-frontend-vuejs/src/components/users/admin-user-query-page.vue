@@ -1,75 +1,80 @@
 <script lang="js">
+// admin-user-query-page.vue
 
-import { useAxiosLib } from '@/stores/axios';
-import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
-
-import MyLoader from './admin-user-table-loader.vue'
-import MyTable from './common-user-table.vue'
+import MyLoader from '@/components/widgets/table-data-loader/main-table-loader.vue'
 import MyToolbar from '@/components/widgets/toolbar/index.vue'
-import MyRefreshLoader from '@/components/widgets/table-data-loader/refresh-loader.vue'
+import MyPager from '@/components/widgets/pager/index.vue'
+import MyDebugBox from '@/components/widgets/debug-box/index.vue'
 
-
-const theAxiosLib = useAxiosLib()
-
+import MyTable from './common-user-table.vue'
 
 export default {
+  name: 'users-admin-query-page',
 
-  name: "user-query-page",
+  components: { MyLoader, MyTable, MyToolbar, MyPager, MyDebugBox },
 
-  components: { MyLoader, MyTable, MyToolbar, MyRefreshLoader },
+  computed: {
+    theDebugText() {
+      let vmo = this.vmo
+      return JSON.stringify(vmo, null, '\t')
+    },
+  },
 
   data() {
-    const rev2 = 0;
-    const items = []
-    return { rev2, items }
+    const vmo = {
+      revision: 0,
+      items: [],
+      pagination: { page: 1, size: 5, total: 0 },
+    }
+    return { vmo }
   },
 
   methods: {
-    init() { },
+    init() {},
+
+    reload() {
+      this.vmo.revision++
+    },
+
+    handleClickDebugBox() {},
 
     handleClickRefresh() {
-      this.rev2++;
+      this.reload()
     },
 
     handleClickAdd() {
       let path = '/admin/users/add'
-      let lo = this.$router.resolve(path);
-      let url = lo.fullPath;
+      let lo = this.$router.resolve(path)
+      let url = lo.fullPath
       window.open(url, '_blank')
     },
-
-    onLoadItems(list) {
-      this.items = list;
-    },
-
   },
 
   mounted() {
     this.init()
   },
 
-  props: {}
+  props: {},
 }
-
 </script>
 
 <style></style>
 
 <template>
   <div>
-
     <MyToolbar>
       <ElButton @click="handleClickAdd"> Add </ElButton>
       <ElButton @click="handleClickRefresh"> Refresh </ElButton>
     </MyToolbar>
 
-    <!-- <MyDebug> </MyDebug> -->
+    <MyLoader v-model="vmo" auto path="/api/v1/admin/users" items="users"></MyLoader>
 
-    <MyTable v-model="items"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+    <MyTable v-model="vmo"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
 
-    <MyLoader @on-items="onLoadItems"></MyLoader>
-
-    <MyRefreshLoader :revision="rev2"> </MyRefreshLoader>
-
+    <MyDebugBox @click="handleClickDebugBox">
+      <pre> {{ theDebugText }}  </pre>
+    </MyDebugBox>
   </div>
 </template>

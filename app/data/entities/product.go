@@ -9,22 +9,29 @@ type BaseProduct struct {
 
 	Base
 
-	// fields
+	// core
 
 	Name dxo.ProductName
-
-	URL dxo.ProductURL
-
 	Code dxo.ProductCode
 
 	Label       string
+	Remark      string
 	Description string
 
-	Standard dxo.StandardID
+	// Standard
+	StandardID   dxo.StandardID
+	StandardCode dxo.StandardCode
 
+	// tm
+	TrademarkID   dxo.TrademarkID
+	TrademarkCode dxo.TrademarkCode
+	TrademarkName dxo.TrademarkName
+
+	//refs
+	URL       dxo.ProductURL
+	URI       dxo.URI `gorm:"unique"`
 	Reference dxo.URL // 作为参考 (数据来源) 的 web 页面
 
-	URI dxo.URI `gorm:"unique"`
 }
 
 type Product struct {
@@ -34,9 +41,3 @@ type Product struct {
 
 	BaseProduct
 }
-
-// type UserProduct struct {
-// 	// id
-// 	ID dxo.UserProductID
-// 	BaseProduct
-// }

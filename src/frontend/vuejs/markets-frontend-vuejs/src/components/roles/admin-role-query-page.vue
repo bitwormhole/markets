@@ -1,26 +1,43 @@
 <script lang="js">
-import MyLoader from './admin-role-table-loader.vue'
-import MyTable from './common-role-table.vue'
+// admin-role-query-page.vue
+
+import MyLoader from '@/components/widgets/table-data-loader/index.vue'
 import MyToolbar from '@/components/widgets/toolbar/index.vue'
 import MyPager from '@/components/widgets/pager/index.vue'
+import MyDebugBox from '@/components/widgets/debug-box/index.vue'
+
+import MyTable from './common-role-table.vue'
 
 export default {
-  name: 'example-query-page',
+  name: 'roles-admin-query-page',
 
-  components: { MyLoader, MyTable, MyToolbar, MyPager },
+  components: { MyLoader, MyTable, MyToolbar, MyPager, MyDebugBox },
+
+  computed: {
+    theDebugText() {
+      let vmo = this.vmo
+      return JSON.stringify(vmo, null, '\t')
+    },
+  },
 
   data() {
-    const rev2 = 0
-    const items = []
-    const pagination = {}
-    return { rev2, items, pagination }
+    const vmo = {
+      revision: 0,
+      items: [],
+      pagination: {
+        page: 1,
+        size: 5,
+        total: 0,
+      },
+    }
+    return { vmo }
   },
 
   methods: {
     init() {},
 
     handleClickRefresh() {
-      this.rev2++
+      this.reload()
     },
 
     handleClickAdd() {
@@ -30,17 +47,11 @@ export default {
       window.open(url, '_blank')
     },
 
-    on_load_items(list) {
-      this.items = list
-    },
-
-    on_load_pagination(pagination) {
-      this.pagination = pagination
-    },
-
     reload() {
-      this.rev2++
+      this.vmo.revision++
     },
+
+    handleClickDebugBox() {},
   },
 
   mounted() {
@@ -60,15 +71,14 @@ export default {
       <ElButton @click="handleClickRefresh"> Refresh </ElButton>
     </MyToolbar>
 
-    <MyPager :revision="rev2" :pagination="pagination" @reload="reload"> </MyPager>
-    <MyTable :revision="rev2" :pagination="pagination" v-model="items"></MyTable>
-    <MyPager :revision="rev2" :pagination="pagination" @reload="reload"> </MyPager>
+    <MyLoader v-model="vmo" auto path="/api/v1/admin/roles" items="roles"></MyLoader>
 
-    <MyLoader
-      v-model="items"
-      :revision="rev2"
-      @on-items="on_load_items"
-      @on-page="on_load_pagination"
-    ></MyLoader>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+    <MyTable v-model="vmo"></MyTable>
+    <MyPager v-model="vmo" @reload="reload"> </MyPager>
+
+    <MyDebugBox @click="handleClickDebugBox">
+      <pre> {{ theDebugText }}  </pre>
+    </MyDebugBox>
   </div>
 </template>

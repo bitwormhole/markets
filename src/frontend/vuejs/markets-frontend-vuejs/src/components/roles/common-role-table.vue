@@ -1,22 +1,18 @@
 <script lang="js">
-import { ElButton, ElTableColumn } from 'element-plus';
+import { ElButton, ElTableColumn } from 'element-plus'
 
-
-// import { useAxiosLib } from '@/stores/axios';
-// import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
-// import { useSessionStore } from '@/stores/sessions.js';
-// import { ElButton, ElButtonGroup, ElTable } from 'element-plus';
-// import MiniLoginDialog from './mini-login-dialog.vue'
-// const theSessionStore = useSessionStore()
-
+import LibGetterJS from '@/js/getter.js'
 
 export default {
+  name: 'sessions-common-table-view',
 
-  name: "sessions-common-table-view",
-
-  components: {},
+  components: { ElButton, ElTableColumn },
 
   computed: {
+    tableRows() {
+      let gett = LibGetterJS.NewGetter()
+      return gett.From(this.modelValue).Get('items').AsAny().Result([])
+    },
   },
 
   data() {
@@ -24,25 +20,22 @@ export default {
   },
 
   methods: {
-    init() { },
+    init() {},
   },
 
-  mounted() {
-  },
+  mounted() {},
 
   props: {
-    modelValue: Array
-  }
+    modelValue: Object, // a 'VMO' object
+  },
 }
-
 </script>
 
 <style></style>
 
 <template>
   <div>
-    <ElTable :data="modelValue">
-
+    <ElTable :data="tableRows">
       <ElTableColumn prop="id" label="ID"></ElTableColumn>
 
       <ElTableColumn prop="name" label="Name"></ElTableColumn>
@@ -55,7 +48,6 @@ export default {
           <ElButton link type="primary">Kill</ElButton>
         </template>
       </ElTableColumn>
-
     </ElTable>
   </div>
 </template>

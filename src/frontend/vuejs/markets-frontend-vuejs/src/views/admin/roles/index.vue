@@ -1,34 +1,25 @@
 <script lang="js">
-
-import MyPage from '@/components/roles/admin-role-query-page.vue';
+import MyPage from '@/components/roles/admin-role-query-page.vue'
 
 export default {
+  name: 'views-admin-roles-index',
 
-    name: "example-query-view",
+  components: { MyPage },
 
-    components: { MyPage },
+  methods: {},
 
-    methods: {
-        init() { },
-    },
+  mounted() {},
 
-    mounted() {
-        this.init()
-    },
-
-    props: {}
+  props: {},
 }
-
 </script>
 
 <style></style>
 
 <template>
-    <frame-for-admin>
+  <frame-for-admin>
+    <h1>角色 (Role)</h1>
 
-        <h1> 角色 (Role) </h1>
-
-        <MyPage></MyPage>
-
-    </frame-for-admin>
+    <MyPage></MyPage>
+  </frame-for-admin>
 </template>

@@ -1,48 +1,36 @@
 <script lang="js">
-import { ElButton, ElTableColumn } from 'element-plus';
-
-
-// import { useAxiosLib } from '@/stores/axios';
-// import { ElButton, ElForm, ElFormItem, ElInput } from 'element-plus';
-// import { useSessionStore } from '@/stores/sessions.js';
-// import { ElButton, ElButtonGroup, ElTable } from 'element-plus';
-// import MiniLoginDialog from './mini-login-dialog.vue'
-// const theSessionStore = useSessionStore()
-
+import { ElButton, ElTable, ElTableColumn } from 'element-plus'
 
 export default {
+  name: 'sessions-common-table',
 
-  name: "sessions-common-table-view",
-
-  components: {},
+  components: { ElButton, ElTable, ElTableColumn },
 
   computed: {
+    items() {
+      return this.modelValue['items']
+    },
   },
 
   data() {
     return {}
   },
 
-  methods: {
-    init() { },
-  },
+  methods: {},
 
-  mounted() {
-  },
+  mounted() {},
 
   props: {
-    modelValue: Array
-  }
+    modelValue: Object, // a 'VMO'
+  },
 }
-
 </script>
 
 <style></style>
 
 <template>
   <div>
-    <ElTable :data="modelValue">
-
+    <ElTable :data="items">
       <ElTableColumn prop="id" label="ID" width="100"></ElTableColumn>
 
       <ElTableColumn prop="uuid" label="UUID" width="320"></ElTableColumn>
@@ -61,7 +49,6 @@ export default {
           <ElButton link type="primary">Kill</ElButton>
         </template>
       </ElTableColumn>
-
     </ElTable>
   </div>
 </template>

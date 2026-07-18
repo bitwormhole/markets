@@ -11,17 +11,23 @@ type BaseTrademark struct {
 
 	// fields
 
-	Name string
+	Name dxo.TrademarkName
+
+	Code dxo.TrademarkCode // 商标注册码
 
 	Type string
 
 	Category string
 
-	Code dxo.TrademarkCode // 商标注册码
+	// holder
 
 	HolderID   dxo.CompanyID
 	HolderCode dxo.CompanyCode
 	HolderName dxo.CompanyName
+
+	// tm
+
+	//refs
 
 	Reference dxo.URL // 作为参考 (数据来源) 的 web 页面
 
@@ -35,9 +41,3 @@ type Trademark struct {
 
 	BaseTrademark
 }
-
-// type UserTrademark struct {
-// 	// id
-// 	ID dxo.UserTrademarkID
-// 	BaseTrademark
-// }

@@ -1,28 +1,24 @@
 <script lang="js">
-
 import InnerHeaderImpl from './../common/header.vue'
 import MyNavTable from './admin-nav-table.vue'
 
 export default {
+  name: 'frames-admin-header',
 
-    name: "frames-admin-header",
-
-    components: { InnerHeaderImpl, MyNavTable },
-
+  components: { InnerHeaderImpl, MyNavTable },
 }
-
 </script>
 
 <style lang="css"></style>
 
 <template>
-    <div>
-        <h2> (frame:admin) </h2>
+  <div>
+    <h2>(frame:admin)</h2>
 
-        <MyNavTable> </MyNavTable>
+    <MyNavTable> </MyNavTable>
 
-        <slot></slot>
+    <slot></slot>
 
-        <InnerHeaderImpl> </InnerHeaderImpl>
-    </div>
+    <InnerHeaderImpl> </InnerHeaderImpl>
+  </div>
 </template>

@@ -36,7 +36,7 @@ func (inst *UserController) Registration() *libgin.ControllerRegistration {
 
 func (inst *UserController) route(rp libgin.RouterProxy) error {
 
-	rp = router4api(rp, "users")
+	rp = router4api(rp, "users-nop")
 
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)

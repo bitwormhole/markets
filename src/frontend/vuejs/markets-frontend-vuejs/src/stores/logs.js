@@ -28,14 +28,19 @@ const state = function () {
 
   const m_list = [];
   const m_revision = 0;
+  const m_latest = {}
   const m_limit = 99; // list 中最多可以包含的条目数量
 
-  return { m_list, m_revision, m_limit }
+  return { m_list, m_revision, m_limit, m_latest }
 }
 
 const getters = {
   all(state) {
     return state.m_list;
+  },
+
+  latest(state) {
+    return state.m_latest;
   },
 
   revision(state) {
@@ -56,6 +61,7 @@ const actions = {
       console.log(item)
     }
     st.m_list.push(item)
+    st.m_latest = item
     st.m_revision++;
     return Promise.resolve(item)
   },

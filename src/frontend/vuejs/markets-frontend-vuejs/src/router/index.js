@@ -111,7 +111,11 @@ const router = createRouter({
 
 
     { path: '/dev', component: () => import('@/views/developer/index.vue') },
+
     { path: '/dev/ui', component: () => import('@/views/developer/full-ui-list-view.vue') },
+    { path: '/dev/show-current-session-info', component: () => import('@/views/developer/show-current-session-info.vue') },
+    { path: '/dev/upload-media-file', component: () => import('@/views/developer/upload-media-file.vue') },
+    { path: '/dev/scan-db-tables', component: () => import('@/views/developer/scan-db-tables.vue') },
 
 
     // /dev/examples/*
@@ -142,21 +146,56 @@ const router = createRouter({
     ////////////////////////////////////////////////////////////////////////////
     // /my/*
 
+    // @ /my/companies
 
-    { path: '/my/companies', component: () => import('@/views/my/companies.vue') },
-    { path: '/my/licences', component: () => import('@/views/my/licences.vue') },
-    { path: '/my/manufacturers', component: () => import('@/views/my/manufacturers.vue') },
-    { path: '/my/products', component: () => import('@/views/my/products.vue') },
-    { path: '/my/shops', component: () => import('@/views/my/shops.vue') },
-    { path: '/my/skus', component: () => import('@/views/my/skus.vue') },
-    { path: '/my/standards', component: () => import('@/views/my/standards.vue') },
-    { path: '/my/trademarks', component: () => import('@/views/my/trademarks.vue') },
+    { path: '/my/companies', component: () => import('@/views/my/companies/index.vue') },
 
-    { path: '/my/favorites', component: () => import('@/views/my/favorites.vue') },
+    // @ /my/favorites
+
+    { path: '/my/favorites', component: () => import('@/views/my/favorites/index.vue') },
+
+    // @ /my/licences
+
+    { path: '/my/licences', component: () => import('@/views/my/licences/index.vue') },
+
+    // @ /my/manufacturers
+
+    { path: '/my/manufacturers', component: () => import('@/views/my/manufacturers/index.vue') },
+
+    // @ /my/products
+
+    { path: '/my/products', component: () => import('@/views/my/products/my-products-query.vue') },
+    { path: '/my/products/do/query', component: () => import('@/views/my/products/my-products-query.vue') },
+    { path: '/my/products/do/add', component: () => import('@/views/my/products/my-products-add.vue') },
+    { path: '/my/products/:id', component: () => import('@/views/my/products/my-products-detail.vue') },
+    { path: '/my/products/:id/edit', component: () => import('@/views/my/products/my-products-edit.vue') },
+    { path: '/my/products/:id/detail', component: () => import('@/views/my/products/my-products-detail.vue') },
+
+    // @ /my/settings
+
+    { path: '/my/settings', component: () => import('@/views/my/examples/index.vue') },
+
+    // @ /my/shops
+
+    { path: '/my/shops', component: () => import('@/views/my/shops/index.vue') },
+
+    // @ /my/skus
+
+    { path: '/my/skus', component: () => import('@/views/my/skus/index.vue') },
+
+    // @ /my/standards
+
+    { path: '/my/standards', component: () => import('@/views/my/standards/index.vue') },
+
+    // @  /my/trademarks
+
+    { path: '/my/trademarks', component: () => import('@/views/my/trademarks/index.vue') },
 
 
     ////////////////////////////////////////////////////////////////////////////
     // /(share)/* 
+
+    { path: '/sign-up', component: () => import('@/views/share/sign-up.vue') },
 
     // table
 

@@ -21,8 +21,8 @@ require (
 	github.com/starter-go/media-pool v0.10.0 // indirect
 	github.com/starter-go/v0/htttest v0.10.0 // indirect
 	github.com/starter-go/v0/libjwt v0.10.0 // indirect
-	github.com/starter-go/v0/libvlog v0.10.0 // indirect
-	github.com/starter-go/v0/rbac-web-app v0.10.0 // indirect
+	github.com/starter-go/v0/libvlog v0.10.1 // indirect
+	github.com/starter-go/v0/rbac-web-app v0.10.2 // indirect
 	github.com/starter-go/v0/subjects v0.10.2 // indirect
 	github.com/tencentyun/cos-go-sdk-v5 v0.7.72 // indirect
 	golang.org/x/time v0.4.0 // indirect
@@ -58,7 +58,7 @@ require (
 	github.com/quic-go/quic-go v0.54.0 // indirect
 	github.com/starter-go/afs v0.10.0 // indirect
 	github.com/starter-go/application v0.10.0 // indirect
-	github.com/starter-go/base v0.10.0 // indirect
+	github.com/starter-go/base v0.10.2 // indirect
 	github.com/starter-go/configen v0.10.0 // indirect
 	github.com/starter-go/i18n v0.10.0 // indirect
 	github.com/starter-go/libafs v0.10.0 // indirect
@@ -67,7 +67,7 @@ require (
 	github.com/starter-go/mimetypes v0.10.0 // indirect
 	github.com/starter-go/module-gorm-mysql v0.10.0 // indirect
 	github.com/starter-go/module-gorm-sqlserver v0.10.0 // indirect
-	github.com/starter-go/rbac v0.10.1 // indirect
+	github.com/starter-go/rbac v0.10.5 // indirect
 	github.com/starter-go/security v0.10.0
 	github.com/starter-go/starter v0.10.0 // indirect
 	github.com/starter-go/stopper v0.10.0 // indirect

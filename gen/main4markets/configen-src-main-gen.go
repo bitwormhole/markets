@@ -12,6 +12,7 @@ import (
     pb395bddcd "github.com/bitwormhole/markets/app/classes/standards"
     p1142a8d2a "github.com/bitwormhole/markets/app/classes/trademarks"
     p4adf7a7b6 "github.com/bitwormhole/markets/app/data/marketdb"
+    p9abd0ee22 "github.com/bitwormhole/markets/app/etc"
     pdb5a6eac0 "github.com/bitwormhole/markets/app/implements/icompany"
     p4da71880f "github.com/bitwormhole/markets/app/implements/idb"
     p4928c5976 "github.com/bitwormhole/markets/app/implements/iexamples"
@@ -96,6 +97,44 @@ func (inst*p4adf7a7b64_marketdb_TheGroup) getSource(ie application.InjectionExt)
 
 func (inst*p4adf7a7b64_marketdb_TheGroup) getURI(ie application.InjectionExt)string{
     return ie.GetString("${datagroup.markets.uri}")
+}
+
+
+
+// type p9abd0ee22.FastPermissions in package:github.com/bitwormhole/markets/app/etc
+//
+// id:com-9abd0ee225866a4e-etc-FastPermissions
+// class:class-08935700f7002f152b848e80701dde49-Registry
+// alias:
+// scope:singleton
+//
+type p9abd0ee225_etc_FastPermissions struct {
+}
+
+func (inst* p9abd0ee225_etc_FastPermissions) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-9abd0ee225866a4e-etc-FastPermissions"
+	r.Classes = "class-08935700f7002f152b848e80701dde49-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p9abd0ee225_etc_FastPermissions) new() any {
+    return &p9abd0ee22.FastPermissions{}
+}
+
+func (inst* p9abd0ee225_etc_FastPermissions) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p9abd0ee22.FastPermissions)
+	nop(ie, com)
+
+	
+
+
+    return nil
 }
 
 
@@ -607,9 +646,21 @@ func (inst* p0e0d72f717_imedia_MediaLinkDao) inject(injext application.Injection
 	nop(ie, com)
 
 	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDGenSer = inst.getUUIDGenSer(ie)
 
 
     return nil
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaLinkDao) getAgent(ie application.InjectionExt)p4adf7a7b6.Agent{
+    return ie.GetComponent("#alias-4adf7a7b6427a7b2ee56dd9cad2335eb-Agent").(p4adf7a7b6.Agent)
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaLinkDao) getUUIDGenSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
 }
 
 
@@ -645,9 +696,15 @@ func (inst* p0e0d72f717_imedia_MediaLinkService) inject(injext application.Injec
 	nop(ie, com)
 
 	
+    com.Dao = inst.getDao(ie)
 
 
     return nil
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaLinkService) getDao(ie application.InjectionExt)p08d49a956.DAO{
+    return ie.GetComponent("#alias-08d49a956408dde7f3a7972876ac967d-DAO").(p08d49a956.DAO)
 }
 
 
@@ -683,9 +740,21 @@ func (inst* p0e0d72f717_imedia_MediaObjectDao) inject(injext application.Injecti
 	nop(ie, com)
 
 	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDGenSer = inst.getUUIDGenSer(ie)
 
 
     return nil
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaObjectDao) getAgent(ie application.InjectionExt)p4adf7a7b6.Agent{
+    return ie.GetComponent("#alias-4adf7a7b6427a7b2ee56dd9cad2335eb-Agent").(p4adf7a7b6.Agent)
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaObjectDao) getUUIDGenSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
 }
 
 
@@ -721,9 +790,15 @@ func (inst* p0e0d72f717_imedia_MediaObjectService) inject(injext application.Inj
 	nop(ie, com)
 
 	
+    com.Dao = inst.getDao(ie)
 
 
     return nil
+}
+
+
+func (inst*p0e0d72f717_imedia_MediaObjectService) getDao(ie application.InjectionExt)pf7f306b24.DAO{
+    return ie.GetComponent("#alias-f7f306b241a41445e934565fccdbe43b-DAO").(pf7f306b24.DAO)
 }
 
 

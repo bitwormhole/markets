@@ -10,6 +10,7 @@ type Trademark struct {
 	Base
 
 	Code dxo.TrademarkCode `json:"code"`
+	Name string            `json:"name"`
 
 	URI dxo.URI `json:"uri"`
 }

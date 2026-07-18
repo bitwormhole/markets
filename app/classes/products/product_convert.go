@@ -1,21 +1,31 @@
 package products
 
 import (
-	"github.com/starter-go/security-gorm/rbacdb"
+	"github.com/bitwormhole/markets/app/classes/utils"
 )
 
 func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	utils.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
 	dst.Name = src.Name
 	dst.Code = src.Code
-	dst.URL = src.URL
 	dst.Label = src.Label
+	dst.Remark = src.Remark
 	dst.Description = src.Description
+
+	dst.TrademarkID = src.TrademarkID
+	dst.TrademarkCode = src.TrademarkCode
+	dst.TrademarkName = src.TrademarkName
+
+	dst.StandardID = src.StandardID
+	dst.StandardCode = src.StandardCode
+
+	dst.URL = src.URL
 	dst.URI = src.URI
+	dst.Reference = src.Reference
 
 	return nil
 }
@@ -24,14 +34,24 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	utils.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
 
 	dst.Name = src.Name
 	dst.Code = src.Code
-	dst.URL = src.URL
 	dst.Label = src.Label
+	dst.Remark = src.Remark
 	dst.Description = src.Description
+
+	dst.TrademarkID = src.TrademarkID
+	dst.TrademarkCode = src.TrademarkCode
+	dst.TrademarkName = src.TrademarkName
+
+	dst.StandardID = src.StandardID
+	dst.StandardCode = src.StandardCode
+
+	dst.URL = src.URL
 	dst.URI = src.URI
+	dst.Reference = src.Reference
 
 	return nil
 }

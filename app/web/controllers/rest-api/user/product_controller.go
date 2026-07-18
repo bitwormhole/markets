@@ -56,7 +56,7 @@ func (inst *ProductController) handleGetOne(gc *gin.Context) {
 	req.context = gc
 	req.controller = inst
 
-	req.wantRequestID = false
+	req.wantRequestID = true
 	req.wantRequestBody = false
 
 	req.execute(req.doGetOne)
@@ -219,9 +219,16 @@ func (inst *myProductRequest) doGetList() error {
 
 func (inst *myProductRequest) doGetOne() error {
 
-	it := &dto.Product{}
+	ctx := inst.context
+	ser := inst.controller.Service
+	pid := inst.id
 
-	inst.body2.Items = []*dto.Product{it}
+	it1, err := ser.Find(ctx, pid)
+	if err != nil {
+		return err
+	}
+
+	inst.body2.Items = []*dto.Product{it1}
 	return nil
 }
 
@@ -253,13 +260,28 @@ func (inst *myProductRequest) doInsertItem() error {
 
 func (inst *myProductRequest) doUpdateItem() error {
 
-	it1 := inst.body1.Items[0]
-	it2 := &dto.Product{}
+	ctx := inst.context
+	ser := inst.controller.Service
+
+	src := inst.body1.Items
+	dst := inst.body2.Items
 	id := inst.id
 
-	it2.ID = id
+	for _, it1 := range src {
+		if it1 == nil {
+			continue
+		}
+		if it1.ID != id {
+			continue
+		}
+		it2, err := ser.Update(ctx, id, it1)
+		if err != nil {
+			return err
+		}
+		dst = append(dst, it2)
+	}
 
-	inst.body2.Items = []*dto.Product{it1, it2}
+	inst.body2.Items = dst
 	return nil
 }
 
